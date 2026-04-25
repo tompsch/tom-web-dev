@@ -6,11 +6,11 @@ const elements = ["modern","responsive","performant","accesible","intuitive","mo
 
 export default function Philosophy () {
     return (
-        <main className={styles.container}>
+        <section className={styles.philosophyContainer}>
             <Line />
             <h1 className="title">Philosoph<span>y</span></h1>
-            <section>
-                <article>
+            <article className={styles.subContainer}> {/*antes section*/}
+                <div className={styles.dynamicText}> {/*antes article*/}
                     <div>
                         <p>Building</p>
                         <div className={styles.roller}>
@@ -22,9 +22,9 @@ export default function Philosophy () {
                         <p>clean code and</p><span className={styles.italic}> thoughtful design.</span>
                     </div>
 
-                </article>
+                </div>
                 <Button withText="work with me"/>
-            </section>
-        </main>
+            </article>
+        </section>
     )
 }

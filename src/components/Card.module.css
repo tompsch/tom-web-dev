@@ -6,7 +6,6 @@
     color: var(--mainColor);
     border: 1px solid var(--mainColor);
     border-radius: 0.2rem;
-    /* outline-offset: -1px; */
     overflow: hidden;
     font-family: var(--headingFontNoCaps);
     align-items: center;
@@ -15,11 +14,7 @@
     transition: 500ms;
 
 }
-@media (width <= 834px) {
-    .card {
-        /* width: 12rem; */
-    }
-}
+
 .card h3 {
     font-size: 1.625rem;
     display: flex;
@@ -33,8 +28,6 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    /* opacity: 0.75;
-    transition: 500ms; */
 
 }
 

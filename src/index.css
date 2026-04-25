@@ -43,6 +43,7 @@
   --bgDark: #000000;
   --mainColor: rgb(255, 255, 255);
   --mainColor-75: rgba(255, 255, 255, 0.75);
+  --mainColor-70: rgba(255, 255, 255, 0.70);
   --secondaryColor: rgb(240, 219, 79);
   --secondaryColor-75: rgba(240, 219, 79, 0.75);
 

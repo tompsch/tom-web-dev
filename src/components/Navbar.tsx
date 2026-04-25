@@ -1,23 +1,29 @@
 import { NavLink } from "react-router"
 import styles from "./Navbar.module.css"
-import burguer from "../assets/burgermenu.svg"
 
 interface NavbarProps {
-    mobile?: boolean
+    footer?: boolean,
+    anchors: {[key:string]: React.RefObject<HTMLElement | null>}
+
 }
 
-export default function Navbar({mobile}: NavbarProps) {
+export default function Navbar({footer, anchors}: NavbarProps) {
+    const handleScroll = (linkName: string) => {
+        if(anchors[linkName].current) {
+            anchors[linkName].current.scrollIntoView({behavior:"smooth"});
+        }
+    }
     return (
-        <nav className={styles.navBar}>
-            <NavLink to="/">/home</NavLink>
+        <nav className={!footer ? styles.navBar : styles.footerNavBar}>
+            {!footer && <NavLink to="/">/HOME</NavLink>}
             <ul className={styles.fullScreenNav}>
-                <li><NavLink to="/">work</NavLink></li>
-                <li><NavLink to="/">about</NavLink></li>
-                <li><NavLink to="/">contact</NavLink></li>
+                {footer && <li onClick={() => window.scrollTo({top: 0, behavior:"smooth"})}>/HOME</li>}
+                {/* <li><NavLink to="/">WORK</NavLink></li> */}
+                <li onClick={() => handleScroll("work")}>WORK</li>
+                {/* <li><NavLink to="/">ABOUT</NavLink></li> */}
+                <li onClick={() => handleScroll("about")}>ABOUT</li>
+                <li><NavLink to="/">CONTACT</NavLink></li>
             </ul>
-            {/* <div className={styles.smallScreenNav}>
-                <img src={burguer} alt="Hamburguer menu" className={styles.burguer}></img>
-            </div> */}
         </nav>
     )
 }

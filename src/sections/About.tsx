@@ -3,12 +3,12 @@ import Line from "../components/Line"
 import Button from "../components/Button"
 import aboutPic from "../assets/tom_about.webp"
 
-export default function About () {
+export default function About ({ref}:{ref:React.Ref<HTMLElement>}) {
     return (
-        <main className={styles.container}>
+        <section className={styles.aboutContainer} ref={ref}>
             <Line />
             <h1 className="title">About m<span>e</span></h1>
-            <section className={styles.picAndData}>
+            <article className={styles.picAndData}>
                 <img src={aboutPic}></img>
                 <div className={styles.mainInfo}>
                     <div className={styles.mainHeaders}>
@@ -29,7 +29,7 @@ export default function About () {
                         to move toward full-stack engineering.
                     </p>
                 </div>
-            </section>
-        </main>
+            </article>
+        </section>
     )
 }
