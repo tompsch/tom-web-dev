@@ -1,28 +1,11 @@
 import styles from "./Projects.module.css"
 import Card from "../components/Card"
 import Button from "../components/Button"
-import littlelemonPic from "../assets/little_lemon.png"
-import musicPic from "../assets/tom_music.png"
-import salonPic from "../assets/hair_day.png"
 import arrow from "../assets/left-arrow.svg"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router"
 import Line from "../components/Line"
-
-const projects = [
-    {title: "resto website",
-    pic: littlelemonPic,
-    alt: "Little Lemon's website"
-},
-{title: "music portfolio",
-    pic: musicPic,
-    alt: "Tom's music website"
-},
-{title: "boutique salon",
-    pic: salonPic,
-    alt: "Hair Day Boutique Salon's  website"
-}
-]
+import { PROJECTS } from "../constants";
 
 export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
     const scrollerRef = useRef<HTMLElement>(null);
@@ -78,7 +61,7 @@ export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
             <Line />
             <h1 className="title">Project<span>s</span></h1>
             <article className={styles.cards} ref={scrollerRef}> {/*antes section*/}
-                {projects.map((project)=>
+                {PROJECTS.map((project)=>
                     <Card project={project} key={project.title}/>
                 )}
             </article>

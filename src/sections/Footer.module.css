@@ -57,7 +57,13 @@ footer p {
     display: block;
     justify-self: center;
     width: 100%;
+    opacity: 0.7;
+    transition: 300ms;
 }
+.icon:hover {
+    opacity: 1;
+}
+
 
 @media (width <= 460px) {
     footer {

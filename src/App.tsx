@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router'
 
 function App() {
   const workRef = useRef<HTMLElement>(null);
-  const aboutRef = useRef<HTMLElement>(null)
+  const aboutRef = useRef<HTMLElement>(null);
   const anchors = {
     work: workRef,
     about: aboutRef

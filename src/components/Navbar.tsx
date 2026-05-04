@@ -18,8 +18,8 @@ export default function Navbar({footer, anchors}: NavbarProps) {
             {!footer && <NavLink to="/">/HOME</NavLink>}
             <ul className={styles.fullScreenNav}>
                 {footer && <li onClick={() => window.scrollTo({top: 0, behavior:"smooth"})}>/HOME</li>}
-                {/* <li><NavLink to="/">WORK</NavLink></li> */}
-                <li onClick={() => handleScroll("work")}>WORK</li>
+                <li><NavLink to="/portfolio">WORK</NavLink></li>
+                {/* <li onClick={() => handleScroll("work")}>WORK</li> */}
                 {/* <li><NavLink to="/">ABOUT</NavLink></li> */}
                 <li onClick={() => handleScroll("about")}>ABOUT</li>
                 <li><NavLink to="/">CONTACT</NavLink></li>

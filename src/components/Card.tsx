@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 import { useInView } from "react-intersection-observer"
 
-export default function Card ({project}: {project:{title: string, pic: string}}) {
+export default function Card ({project}: {project:{title: string, pic: string, widePic: string, alt: string}}) {
 
 const [ ref, inView ] = useInView({
     threshold: 1,

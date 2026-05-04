@@ -2,9 +2,19 @@
     background-color: var(--bgDark);
     /* height: 862px; */
     /* padding: 0 0 4rem; */
+    row-gap: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
     position: relative;
+    color: var(--mainColor);
+    font-family: var(--headingFontNoCaps);
+    padding: 0 0 3rem;
+}
+
+@media (width <= 700px) {
+    .portfolioContainer {
+        row-gap: 4rem;
+    }
 }
