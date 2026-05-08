@@ -1,17 +1,10 @@
-nav {
-    background: var(--bgDark);
-}
 nav ul {
     display: flex;
     column-gap: 1.5rem;
-    list-style: none;
 }
-nav a, nav li {
+nav a {
     font-family: var(--headingFontCaps);
-    color: var(--mainColor-75);
-    text-decoration: none;
     font-size: 1.25rem;
-    transition: 300ms;
 }
 .footerNavBar ul {
     flex-direction: column;
@@ -22,7 +15,7 @@ nav a, nav li {
     font-size: 1rem;
     font-family: var(--headingFontNoCaps);
 }
-nav a:hover, nav li:hover {
+nav li:hover {
     color: var(--mainColor);
     cursor: pointer;
 }

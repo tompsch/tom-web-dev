@@ -1,13 +1,9 @@
 .philosophyContainer {
-    /* height: 669px; */
-    background-color: var(--bgDark);
-    color: var(--mainColor-75);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
 }
-
 .subContainer {
     margin: 6.5rem 0;
     height: 7.25rem;
@@ -16,40 +12,31 @@
     justify-content: space-between;
     align-items: center;
 }
-
-
 .philosophyContainer p {
-    font-family: var(--headingFontNoCaps);
     color: var(--mainColor);
     font-size: 1.625rem;
     display: inline-block;
 }
-
 .italic {
     font-family: var(--mainFont);
     color: var(--mainColor);
     font-style: italic;
     font-size: 1.625rem;
 }
-
 .dynamicText {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-width: max-content;
-
 }
-
 .roller {
     display: inline-block;
     overflow: hidden;
     height: 1.625rem;
     vertical-align:bottom;
     margin: 0 0.5rem;
-
 }
-
 .philosophyContainer .rollerElement {
     display: flex;
     align-items: center;
@@ -89,7 +76,6 @@
     }
 }
 
-
 @media (width <= 700px) {
     .subContainer  {
         flex-direction: column;
@@ -104,7 +90,6 @@
 @media (width <= 380px) {
     .dynamicText {
         row-gap: 0.8rem;
-
     }
     .dynamicText > div:first-child{
         display: flex;

@@ -1,6 +1,4 @@
 .projectsContainer {
-    background-color: var(--bgDark);
-    /* height: 862px; */
     padding: 0 0 4rem;
     display: flex;
     flex-direction: column;
@@ -13,23 +11,19 @@
     grid-auto-flow: column;
     grid-auto-columns: auto;
     width: 87vw;
-
     place-items: center;
     margin: 4rem 0 3.66rem;
     scroll-snap-type: x mandatory;
     overscroll-behavior-inline: contain;
-
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 .cards > * {
         scroll-snap-align: center;
     }
-
 .cards::-webkit-scrollbar {
         display: none;
     }
-
 .arrow {
     position: absolute;
     top: 17rem;
@@ -46,14 +40,14 @@
     transform: rotate(180deg);
     right: 0;
 }
+
 @media (width <= 1250px) {
     .cards {
         width: 100vw;
-        /* gap: 1rem; */
         overflow-x: auto;
-
     }
 }
+
 @media (width <= 1061px) {
     .cards {
         gap: 2rem;

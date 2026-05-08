@@ -10,9 +10,7 @@
     transition: 700ms;
     box-sizing: border-box;
     opacity: 0.7;
-
 }
-
 .cardContainer {
     height: 100%;
     min-width: 15ch;

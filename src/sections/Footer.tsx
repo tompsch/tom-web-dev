@@ -1,8 +1,7 @@
 import styles from "./Footer.module.css"
 import Line from "../components/Line"
 import Navbar from "../components/Navbar"
-import footerPic from "../assets/footer_pic.jpeg"
-import { SOCIALS } from "../constants"
+import { SOCIALS, PICTURES } from "../constants"
 
 interface FooterProps {
     anchors: {[key:string]: React.RefObject<HTMLElement | null>}
@@ -16,7 +15,7 @@ export default function Footer ({anchors}: FooterProps) {
             <h2>Tomás Puebla Schildknecht <span>.web developer</span></h2>
             <div className={styles.footerMain}>
                 <Navbar footer={true} anchors={anchors}/>
-                <img src={footerPic} className={styles.footerPic}></img>
+                <img src={PICTURES.islander[0]} alt={PICTURES.islander[1]}className={styles.footerPic}></img>
                 <ul className={styles.socialIcons}>
                     {SOCIALS.map((icon)=>
                     (<li key={icon.alt}>

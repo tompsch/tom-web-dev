@@ -29,3 +29,15 @@ h1.title::first-letter {
 footer .line {
     width: 55%;
 }
+a {
+    text-decoration: none;
+    color: var(--mainColor-75);
+    transition: 300ms;
+}
+a:hover {
+    color: var(--mainColor);
+    cursor: pointer;
+}
+ul {
+    list-style: none;
+}

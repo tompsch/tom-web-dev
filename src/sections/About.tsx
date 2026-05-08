@@ -1,7 +1,8 @@
 import styles from "./About.module.css"
 import Line from "../components/Line"
 import Button from "../components/Button"
-import aboutPic from "../assets/tom_about.webp"
+import { Link } from "react-router"
+import { PICTURES, ICONS } from "../constants"
 
 export default function About ({ref}:{ref:React.Ref<HTMLElement>}) {
     return (
@@ -9,25 +10,33 @@ export default function About ({ref}:{ref:React.Ref<HTMLElement>}) {
             <Line />
             <h1 className="title">About m<span>e</span></h1>
             <article className={styles.picAndData}>
-                <img src={aboutPic}></img>
+                <img src={PICTURES.bioPic[0]} alt={PICTURES.bioPic[1]} className={styles.aboutPic}></img>
                 <div className={styles.mainInfo}>
                     <div className={styles.mainHeaders}>
                         <h2>Tomás Puebla Schildknecht</h2>
-                        <h3>junior front-end web developer with a
+                        <h3>front-end web developer with a
                             strong background in music and education</h3>
                     </div>
-                    <Button withText="my experience" />
-                </div>
+                    <Link to="about"><Button withText="learn more" /></Link>
 
-                <div className={styles.aboutText}>
-                    <p>I'm a former computer and electronics engineering student and an avid, passionate technology enthusiast.</p>
-                    <p>Before transitioning into software development, I worked as a musician and music professor at schools and academies, which strengthened my communication and problem-solving skills, my patience and my passion for continuous learning.</p>
-                    <p>I specialize in building modern and responsive interfaces using
-                        <span> React, TypeScript, JavaScript, HTML, CSS, and Jest, </span>
-                        and I'm currently expanding my knowledge in back-end development with
-                        <span> Python and Django </span>
-                        to move toward full-stack engineering.
-                    </p>
+                </div>
+                <div className={styles.secondaryInfo}>
+                    <div className={styles.bulletIcons}>
+                        <img src={ICONS.reactWhite[0]} alt={ICONS.reactWhite[1]}/>
+                        <p><span>Front-end development with React</span> — crafting responsive, clean, and performant UIs</p>
+                    </div>
+                    <div className={styles.bulletIcons}>
+                        <img src={ICONS.backEnd[0]} alt={ICONS.backEnd[1]} />
+                        <p><span>Expanding into full-stack</span> with Python and Django</p>
+                    </div>
+                    <div className={styles.bulletIcons}>
+                        <img src={ICONS.gears[0]} alt={ICONS.gears[1]} />
+                        <p><span>Building real-world side projects</span> to sharpen both ends of the stack</p>
+                    </div>
+                    <div className={styles.bulletIcons}>
+                        <img src={ICONS.creativity[0]} alt={ICONS.creativity[1]} />
+                        <p><span>Former teacher and musician</span> — bringing clarity, creativity, and a love for connecting the dots to every project</p>
+                    </div>
                 </div>
             </article>
         </section>

@@ -2,17 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--bgDark);
-  /* justify-items: center; */
+  background-repeat: no-repeat;
   height: 648px;
-  /* height: 27rem; */
-  /* border: 1px solid red; */
   overflow: hidden;
-
 }
 .presentation {
   margin: 152px 0 224px;
-  /* margin: 6.33rem 0 9.33rem; */
   align-content: center;
   display: grid;
   grid-template-rows: 1fr 1.5rem;

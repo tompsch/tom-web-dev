@@ -1,7 +1,6 @@
 import styles from "./PortfolioCard.module.css"
-import gitIcon from "../assets/github3.svg"
-import extLink from "../assets/externalLink4.svg"
 import { useState, useRef } from "react"
+import { ICONS } from "../constants"
 
 interface PortFolioCardProps {
     project: {title: string, pic: string, fullTitle: string, description: string, widePic: string, alt: string, web: string, repository: string}
@@ -22,14 +21,14 @@ export default function PortfolioCard ({project}:PortFolioCardProps) {
             <div className={styles.cardContainer}>
                 <h2>{project.title}</h2>
                 <div className={styles.imgContainer}>
-                    <img src={project.widePic}></img>
+                    <img src={project.widePic} alt={project.alt}></img>
                 </div>
                 <div className={styles.links + " " + (noPointerEvents && styles.noPointerEvents)}>
                     <a href={project.web} target="_blank" rel="noopener noreferrer" >
-                        <img src={extLink} alt="External link icon" />
+                        <img src={ICONS.externalLink[0]} alt={ICONS.externalLink[1]} />
                     </a>
                     <a href={project.repository} target="_blank" rel="noopener noreferrer" >
-                        <img src={gitIcon} alt="GitHub icon" />
+                        <img src={ICONS.github[0]} alt={ICONS.github[1]} />
                     </a>
                 </div>
 

@@ -6,22 +6,15 @@
     position: relative;
 }
 .container li {
-    list-style: none;
     height: 2.2rem;
     transition: 300ms;
     width: 100%;
     display: block;
     text-align: center;
     opacity: 0.6;
-
 }
-
 .container li img {
     height: 100%;
-}
-
-.container li.python, .container li.bootstrap {
-    height: 2.6rem;
 }
 @media(hover: hover){
     @media(width > 1000px) {
@@ -40,13 +33,11 @@
         }
     }
 }
-
 @media (width <= 1000px) {
     .container ul{
         width: 90vw;
     }
 }
-
 @media (width <= 700px) {
     .container {
         display: flex;

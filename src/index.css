@@ -41,9 +41,13 @@
 
 :root {
   --bgDark: #000000;
-  --mainColor: rgb(255, 255, 255);
-  --mainColor-75: rgba(255, 255, 255, 0.75);
-  --mainColor-70: rgba(255, 255, 255, 0.70);
+  /*--bgPrimary: #050b14; GITHUB*/
+  --bgPrimary: #0b0e14; /*slight mod*/
+  --bgSecondary: #1c1c25;
+  /* --mainColor: rgb(255, 255, 255); */
+  --mainColor: #f0f6fc;
+  /* --mainColor-75: rgba(255, 255, 255, 0.75); */
+  --mainColor-75: rgba(240, 246, 252, 0.75);
   --secondaryColor: rgb(240, 219, 79);
   --secondaryColor-75: rgba(240, 219, 79, 0.75);
 
@@ -71,11 +75,15 @@
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;*/
-  background: white;
+  letter-spacing: 0.18px;*/
+  color-scheme: light dark;
+
+  background: var(--bgPrimary);
+
   font-size: 24px;
 
+  color: var(--mainColor-75);
+  font-family: var(--headingFontNoCaps);
   /*font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
