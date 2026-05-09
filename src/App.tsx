@@ -2,28 +2,23 @@ import './App.css'
 import Home from './pages/Home'
 import Portfolio from './pages/Portfolio'
 import AboutPage from './pages/AboutPage'
+import Contact from './pages/Contact'
 import Navbar from "./components/Navbar"
 import Footer from './sections/Footer'
-import { useRef } from 'react'
 import { Routes, Route } from 'react-router'
 
 
 function App() {
-  const workRef = useRef<HTMLElement>(null);
-  const aboutRef = useRef<HTMLElement>(null);
-  const anchors = {
-    work: workRef,
-    about: aboutRef
-  }
   return (
     <>
-      <Navbar anchors={anchors} />
+      <Navbar />
       <Routes>
-          <Route index element={<Home anchors={anchors} />}/>
-          <Route path="portfolio" element={<Portfolio anchors={anchors}/>} />
+          <Route index element={<Home />}/>
+          <Route path="portfolio" element={<Portfolio/>} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<Contact />} />
       </Routes>
-      <Footer anchors={anchors} />
+      <Footer />
     </>
   )
 }

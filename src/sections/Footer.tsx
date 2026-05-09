@@ -3,18 +3,14 @@ import Line from "../components/Line"
 import Navbar from "../components/Navbar"
 import { SOCIALS, PICTURES } from "../constants"
 
-interface FooterProps {
-    anchors: {[key:string]: React.RefObject<HTMLElement | null>}
-}
-
-export default function Footer ({anchors}: FooterProps) {
+export default function Footer () {
 
     return (
         <footer>
             <Line />
             <h2>Tomás Puebla Schildknecht <span>.web developer</span></h2>
             <div className={styles.footerMain}>
-                <Navbar footer={true} anchors={anchors}/>
+                <Navbar footer={true}/>
                 <img src={PICTURES.islander[0]} alt={PICTURES.islander[1]}className={styles.footerPic}></img>
                 <ul className={styles.socialIcons}>
                     {SOCIALS.map((icon)=>

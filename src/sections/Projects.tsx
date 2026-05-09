@@ -1,25 +1,20 @@
 import styles from "./Projects.module.css"
 import Card from "../components/Card"
 import Button from "../components/Button"
-import arrow from "../assets/left-arrow.svg"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router"
 import Line from "../components/Line"
-import { PROJECTS } from "../constants";
+import { PROJECTS, ICONS } from "../constants";
 
-export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
+export default function Projects () {
     const scrollerRef = useRef<HTMLElement>(null);
-
     const [size, setSize] = useState(window.innerWidth);
-
-
     const handleResize = () => {
         const clientWidth = window.innerWidth;
         if(clientWidth != size) {
             setSize(clientWidth);
         }
     }
-
     useEffect (()=>{
         if (scrollerRef.current) {
             const a = scrollerRef.current.scrollWidth / 2, b = window.innerWidth / 2;
@@ -27,12 +22,10 @@ export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
             scrollerRef.current.scroll({left: offset, behavior:"instant"});
         }
     },[size])
-
     useEffect(()=>{
         window.addEventListener("resize", handleResize);
         return ()=>window.removeEventListener("resize", handleResize)
     }, [])
-
     const handleScroll = (direction: number) => {
         if (scrollerRef.current) {
             const children = Array.from(scrollerRef.current.children);
@@ -55,9 +48,8 @@ export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
             children[currentIndex + direction].scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
         }
     }
-
     return (
-        <section className={styles.projectsContainer} ref={ref}>
+        <section className={styles.projectsContainer} >
             <Line />
             <h1 className="title">Project<span>s</span></h1>
             <article className={styles.cards} ref={scrollerRef}> {/*antes section*/}
@@ -65,8 +57,8 @@ export default function Projects ({ref}:{ref:React.Ref<HTMLElement>}) {
                     <Card project={project} key={project.title}/>
                 )}
             </article>
-            <img className={`${styles.arrow} + ${styles.arrowL}`} src={arrow} onClick={()=>handleScroll(-1)}></img>
-            <img className={`${styles.arrow} + ${styles.arrowR}`} src={arrow} onClick={()=>handleScroll(1)}></img>
+            <img className={`${styles.arrow} + ${styles.arrowL}`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
+            <img className={`${styles.arrow} + ${styles.arrowR}`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
             <Link to="portfolio"><Button withText="full portfolio"/></Link>
         </section>
     )

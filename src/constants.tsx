@@ -29,6 +29,8 @@ import creativity from "./assets/bullet_icons/creativity.png"
 import gears from "./assets/bullet_icons/gears.png"
 import islander from "./assets/footer_pic.jpeg"
 import pin from "./assets/pin.svg"
+import arrow from "./assets/left-arrow.svg"
+
 
 export const HERO_ICONS = [
     [html,"HTML"],
@@ -63,7 +65,8 @@ export const ICONS = {
     creativity: [creativity,"Creativity"],
     reactWhite: [reactWhite,"React"],
     gears: [gears,"Gears"],
-    pin: [pin, "Location pin"]
+    pin: [pin, "Location pin"],
+    arrow: [arrow, "Arrow"],
 }
 
 export const PICTURES = {

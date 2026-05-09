@@ -4,9 +4,9 @@ import Button from "../components/Button"
 import { Link } from "react-router"
 import { PICTURES, ICONS } from "../constants"
 
-export default function About ({ref}:{ref:React.Ref<HTMLElement>}) {
+export default function About () {
     return (
-        <section className={styles.aboutContainer} ref={ref}>
+        <section className={styles.aboutContainer}>
             <Line />
             <h1 className="title">About m<span>e</span></h1>
             <article className={styles.picAndData}>

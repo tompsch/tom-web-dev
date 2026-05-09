@@ -3,11 +3,7 @@ import PortfolioCard from "../components/PortfolioCard"
 import { PROJECTS } from "../constants"
 import { useEffect } from "react"
 
-interface PortfolioProps {
-    anchors: {[key:string]: React.RefObject<HTMLElement | null>}
-}
-
-export default function Portfolio ({anchors}: PortfolioProps) {
+export default function Portfolio () {
 useEffect(()=>{
     window.scrollTo(0,0);
 },[])

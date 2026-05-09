@@ -3,17 +3,13 @@ import Philosophy from "../sections/Philosophy"
 import Projects from "../sections/Projects"
 import About from "../sections/About"
 
-interface HomeProps {
-    anchors: {[key:string]: React.RefObject<HTMLElement | null>}
-}
-
-export default function Home ({anchors}: HomeProps) {
+export default function Home () {
     return (
         <>
             <Hero />
             <Philosophy />
-            <About ref={anchors.about}/>
-            <Projects ref={anchors.work}/>
+            <About />
+            <Projects />
         </>
     )
 }

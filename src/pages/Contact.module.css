@@ -1,0 +1,64 @@
+.contactContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.contactContainer form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 2rem;
+    width: 35vw;
+    row-gap: 0.1rem;
+}
+.contactContainer h2 {
+    color: var(--mainColor);
+    font-size: 1.46rem;
+    margin: 1rem 0 0;
+}
+.contactContainer h3 {
+    font-size: 1.17rem;
+    text-align: center;
+}
+.contactContainer label {
+    /* color: var(--mainColor); */
+}
+.contactContainer input, .contactContainer textarea {
+    font-family: var(--headingFontNoCaps);
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 0.2rem;
+    resize: none;
+    max-height: 50vh;
+    background: var(--formDarkMode);
+    border: 2px solid transparent;
+    color: var(--bgSecondary);
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #ccc;
+}
+.error {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+}
+.error::before {
+    content: "* ";
+}
+.contactContainer form button {
+    margin: 1rem 0 0;
+    align-self: center;
+}
+.contactContainer label:not(:first-child) {
+    margin: 0.2rem 0 0;
+}
+@media(width <= 834px) {
+    .contactContainer form {
+        width: 50vw;
+    }
+}
+@media(width <= 420px) {
+    .contactContainer form {
+        width: 65vw;
+    }
+}
