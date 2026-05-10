@@ -1,10 +1,11 @@
 import styles from "./About.module.css"
 import Line from "../components/Line"
 import Button from "../components/Button"
-import { Link } from "react-router"
+import { useNavigate } from "react-router"
 import { PICTURES, ICONS } from "../constants"
 
 export default function About () {
+    const navigate = useNavigate();
     return (
         <section className={styles.aboutContainer}>
             <Line />
@@ -17,7 +18,7 @@ export default function About () {
                         <h3>front-end web developer with a
                             strong background in music and education</h3>
                     </div>
-                    <Link to="about"><Button withText="learn more" /></Link>
+                    <Button withText="learn more" onClick={()=>navigate("/about")}/>
 
                 </div>
                 <div className={styles.secondaryInfo}>

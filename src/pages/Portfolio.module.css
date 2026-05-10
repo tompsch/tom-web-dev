@@ -9,6 +9,10 @@
     padding: 0 0 3rem;
 }
 
+.portfolioContainer button {
+    margin: 1rem 0 0;
+}
+
 @media (width <= 700px) {
     .portfolioContainer {
         row-gap: 4rem;

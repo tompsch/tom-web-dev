@@ -11,8 +11,6 @@
     transition: 300ms;
     width: max-content;
     flex-grow: 0;
-    /* flex-shrink: 0; */
-    /* max-width: max-content; */
 }
 
 @media(hover:hover){
@@ -23,4 +21,8 @@
         border: 1px solid var(--buttonBorderHover);
 
     }
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }

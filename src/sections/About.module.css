@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    /* scroll-snap-align: start; */
 }
 .picAndData {
     margin: 2.66rem 0 4.66rem;

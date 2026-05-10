@@ -4,6 +4,8 @@ footer {
     align-items: center;
     position: relative;
     row-gap: 1.167rem;
+    /* scroll-snap-align: end; */
+
 }
 
 footer h2 {

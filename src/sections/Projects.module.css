@@ -5,6 +5,7 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+    /* scroll-snap-align: start; */
 }
 .cards {
     display: grid;

@@ -2,11 +2,12 @@ import styles from "./Projects.module.css"
 import Card from "../components/Card"
 import Button from "../components/Button"
 import { useEffect, useRef, useState } from "react"
-import { Link } from "react-router"
+import { useNavigate } from "react-router"
 import Line from "../components/Line"
 import { PROJECTS, ICONS } from "../constants";
 
 export default function Projects () {
+    const navigate = useNavigate();
     const scrollerRef = useRef<HTMLElement>(null);
     const [size, setSize] = useState(window.innerWidth);
     const handleResize = () => {
@@ -59,7 +60,7 @@ export default function Projects () {
             </article>
             <img className={`${styles.arrow} ${styles.arrowL} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
             <img className={`${styles.arrow} ${styles.arrowR} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
-            <Link to="portfolio"><Button withText="full portfolio"/></Link>
+            <Button withText="full portfolio" onClick={()=>navigate("/portfolio")}/>
         </section>
     )
 }

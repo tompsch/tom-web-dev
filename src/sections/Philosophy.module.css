@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    /* scroll-snap-align: start; */
 }
 .subContainer {
     margin: 6.5rem 0;

@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     column-gap: 1.5rem;
+    /* scroll-snap-align: start; */
 }
 .noFooter {
     display: flex;
@@ -20,6 +21,8 @@
 nav ul {
     display: flex;
     column-gap: 1.5rem;
+    height: 100%;
+
 }
 nav a {
     font-family: var(--headingFontCaps);

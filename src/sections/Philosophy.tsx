@@ -1,11 +1,12 @@
 import styles from "./Philosophy.module.css"
 import Button from "../components/Button"
 import Line from "../components/Line"
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 const elements = ["modern","responsive","performant","accesible","intuitive","modular","scalable","secure","reliable"];
 
 export default function Philosophy () {
+    const navigate = useNavigate();
     return (
         <section className={styles.philosophyContainer}>
             <Line />
@@ -24,7 +25,7 @@ export default function Philosophy () {
                     </div>
 
                 </div>
-                <Link to="contact"><Button withText="work with me" /></Link>
+                <Button withText="work with me" onClick={()=>navigate("/contact")}/>
             </article>
         </section>
     )

@@ -1,6 +1,8 @@
 import styles from "./AboutPage.module.css"
 import { useEffect } from "react";
 import { SOCIALS, ICONS, PICTURES } from "../constants";
+import { useNavigate } from "react-router";
+import Button from "../components/Button";
 
 type IconKey = keyof typeof ICONS;
 const displayIcons = (selectionString: IconKey []) => {
@@ -21,9 +23,10 @@ const techStacks: [string, IconKey[]][] =
 ];
 
 export default function AboutPage () {
-useEffect(()=>{
-    window.scrollTo(0,0);
-},[])
+    const navigate = useNavigate();
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    },[])
     return (
         <section className={styles.experienceContainer}>
             <h1 className="title">About m<span>e</span></h1>
@@ -59,6 +62,7 @@ useEffect(()=>{
                     </p>
                 </div>
             </article>
+            <Button withText="work with me" onClick={()=>navigate("/contact")}/>
             <article className={styles.techStack}>
                 <h2>TECH STACK</h2>
                 <div className={styles.allStacks}>
@@ -74,6 +78,7 @@ useEffect(()=>{
                     )}
                 </div>
             </article>
+
         </section>
     )
 }

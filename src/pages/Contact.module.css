@@ -4,6 +4,9 @@
     align-items: center;
     position: relative;
 }
+.confirmation button {
+    margin: 2rem 0;
+}
 .contactContainer form {
     display: flex;
     flex-direction: column;
@@ -19,9 +22,6 @@
 .contactContainer h3 {
     font-size: 1.17rem;
     text-align: center;
-}
-.contactContainer label {
-    /* color: var(--mainColor); */
 }
 .contactContainer input, .contactContainer textarea {
     font-family: var(--headingFontNoCaps);
@@ -61,4 +61,7 @@ input:focus, textarea:focus {
     .contactContainer form {
         width: 65vw;
     }
+}
+.hidden {
+    display: none;
 }

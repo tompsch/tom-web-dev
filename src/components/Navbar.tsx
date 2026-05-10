@@ -21,14 +21,28 @@ export default function Navbar({footer}: NavbarProps) {
             window.scrollTo({top: 0, behavior:"instant"});
         }
     }
+    const toggleTheme = () => {
+        theme==="dark" ? setTheme("light") : setTheme("dark")
+    }
     return (
         <nav className={!footer ? styles.navBar : styles.footerNavBar}>
+            {!footer &&
             <div className={styles.noFooter}>
-                {!footer && <NavLink to="/">/HOME</NavLink>}
-                {!footer && <img src={ICONS.theme[0]} alt={ICONS.moon[1]} className="monoIcons" onClick={()=>theme==="dark" ? setTheme("light") : setTheme("dark")}></img>}
-            </div>
+                <NavLink to="/">/HOME</NavLink>
+                <img
+                    tabIndex={0}
+                    role="button"
+                    onKeyDown={e => e.key === "Enter" && toggleTheme()}
+                    src={ICONS.theme[0]}
+                    alt={ICONS.theme[1]} className="monoIcons" onClick={toggleTheme}></img>
+            </div>}
             <ul className={styles.fullScreenNav}>
-                {footer && <li onClick={handleHomeClick}>/HOME</li>}
+                {footer && <li
+                    onClick={handleHomeClick}
+                    tabIndex={0}
+                    role="button"
+                    onKeyDown={e => e.key === "Enter" && handleHomeClick()}
+                    >/HOME</li>}
                 <li><NavLink to="/portfolio">WORK</NavLink></li>
                 <li><NavLink to="/about">ABOUT</NavLink></li>
                 <li><NavLink to="/contact">CONTACT</NavLink></li>

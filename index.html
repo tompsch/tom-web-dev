@@ -2,12 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/code.png" />
+    <link rel="icon" type="image/png" href="/code.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="tompsch.dev" />
+    <meta name="author" content="Tomás Puebla Schildknecht" />
+    <meta name="description" content="Tomás Puebla Schildknecht - React web developer" />
+    <meta name="language" content="english" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content=”notranslate” />
+    <meta name="copyright" content="Copyright 2026">
+
+    <meta property="og:title" content="tompsch.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tompsch.dev" />
+    <meta property="og:description" content="Tomás Puebla Schildknecht - React web developer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="tompsch.dev" />
+    <meta property="og:image" content="https://tompsch.dev/tompsch.png" />
+
     <title>tompsch.dev</title>
   </head>
   <body>
     <div id="root"></div>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" type="text" />
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

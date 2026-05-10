@@ -3,7 +3,7 @@ h1.title {
     color: var(--mainColor-75);
     font-size: 1.75rem;
     letter-spacing: 40%;
-    padding: 2rem 0 0; /*probar con 2. antes era 3.5*/
+    padding: 2rem 0 0;
 }
 .title span {
     letter-spacing: normal;
@@ -41,3 +41,9 @@ a:hover {
 ul {
     list-style: none;
 }
+
+/* #root {
+    height: 100vh;
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+} */

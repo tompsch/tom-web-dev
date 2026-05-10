@@ -69,7 +69,6 @@ export const ICONS = {
     gears: [gears,"Gears"],
     pin: [pin, "Location pin"],
     arrow: [arrow, "Arrow"],
-    moon: [moon, "Moon"],
     theme: [theme, "Dark-light"]
 }
 
