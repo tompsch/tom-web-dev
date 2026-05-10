@@ -30,7 +30,6 @@ import gears from "./assets/bullet_icons/gears.png"
 import islander from "./assets/footer_pic.jpeg"
 import pin from "./assets/pin.svg"
 import arrow from "./assets/left-arrow.svg"
-import moon from "./assets/moon.svg"
 import theme from "./assets/themeIcon.svg"
 
 
