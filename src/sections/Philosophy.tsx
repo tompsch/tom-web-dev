@@ -1,6 +1,7 @@
 import styles from "./Philosophy.module.css"
 import Button from "../components/Button"
 import Line from "../components/Line"
+import { Link } from "react-router";
 
 const elements = ["modern","responsive","performant","accesible","intuitive","modular","scalable","secure","reliable"];
 
@@ -23,7 +24,7 @@ export default function Philosophy () {
                     </div>
 
                 </div>
-                <Button withText="work with me"/>
+                <Link to="contact"><Button withText="work with me" /></Link>
             </article>
         </section>
     )

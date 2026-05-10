@@ -6,11 +6,12 @@ import Contact from './pages/Contact'
 import Navbar from "./components/Navbar"
 import Footer from './sections/Footer'
 import { Routes, Route } from 'react-router'
+import { ThemeProvider } from './context/ThemeContext'
 
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <Navbar />
       <Routes>
           <Route index element={<Home />}/>
@@ -19,7 +20,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
       </Routes>
       <Footer />
-    </>
+    </ThemeProvider>
   )
 }
 

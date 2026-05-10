@@ -32,7 +32,7 @@
     max-height: 50vh;
     background: var(--formDarkMode);
     border: 2px solid transparent;
-    color: var(--bgSecondary);
+    color: var(--bgSecondaryForm);
 }
 input:focus, textarea:focus {
   outline: none;

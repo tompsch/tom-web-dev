@@ -22,19 +22,19 @@ export default function About () {
                 </div>
                 <div className={styles.secondaryInfo}>
                     <div className={styles.bulletIcons}>
-                        <img src={ICONS.reactWhite[0]} alt={ICONS.reactWhite[1]}/>
+                        <img src={ICONS.reactWhite[0]} alt={ICONS.reactWhite[1]} className="monoIcons"/>
                         <p><span>Front-end development with React</span> — crafting responsive, clean, and performant UIs</p>
                     </div>
                     <div className={styles.bulletIcons}>
-                        <img src={ICONS.backEnd[0]} alt={ICONS.backEnd[1]} />
+                        <img src={ICONS.backEnd[0]} alt={ICONS.backEnd[1]} className="monoIcons"/>
                         <p><span>Expanding into full-stack</span> with Python and Django</p>
                     </div>
                     <div className={styles.bulletIcons}>
-                        <img src={ICONS.gears[0]} alt={ICONS.gears[1]} />
+                        <img src={ICONS.gears[0]} alt={ICONS.gears[1]} className="monoIcons"/>
                         <p><span>Building real-world side projects</span> to sharpen both ends of the stack</p>
                     </div>
                     <div className={styles.bulletIcons}>
-                        <img src={ICONS.creativity[0]} alt={ICONS.creativity[1]} />
+                        <img src={ICONS.creativity[0]} alt={ICONS.creativity[1]} className="monoIcons"/>
                         <p><span>Former teacher and musician</span> — bringing clarity, creativity, and a love for connecting the dots to every project</p>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
 .cardContainer {
     height: 100%;
     min-width: 15ch;
-    outline: 1px solid white;
+    outline: 2px solid var(--mainColor);
     grid-column: 1 / 1;
     overflow: hidden;
     border-radius: 1rem;
@@ -42,6 +42,8 @@
     height: 100%;
     object-fit: cover;
     transition: 500ms;
+    background-color: var(--cardBg);
+
 }
 .cardInformation {
     grid-column: 2;
@@ -57,6 +59,7 @@
     align-items: end;
     height: 100%;
     padding: 0 0.5rem;
+    background-color: var(--cardBg);
 }
 .links a {
     opacity: 0.7;

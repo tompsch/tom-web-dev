@@ -4,7 +4,7 @@ import salonPic from "./assets/hair_day.png"
 import hairdayWide from "./assets/hairday_wide.png"
 import littlelemonWide from "./assets/littlelemon_wide.png"
 import musicWide from "./assets/musicWide.png"
-import linkedin from "./assets/linkedin 1.svg"
+import linkedin from "./assets/linkedin 2.svg"
 import mail from "./assets/email 1.svg"
 import externalLink from "./assets/externalLink.svg"
 import aboutPic from "./assets/tom_about.webp"
@@ -30,6 +30,8 @@ import gears from "./assets/bullet_icons/gears.png"
 import islander from "./assets/footer_pic.jpeg"
 import pin from "./assets/pin.svg"
 import arrow from "./assets/left-arrow.svg"
+import moon from "./assets/moon.svg"
+import theme from "./assets/themeIcon.svg"
 
 
 export const HERO_ICONS = [
@@ -67,6 +69,8 @@ export const ICONS = {
     gears: [gears,"Gears"],
     pin: [pin, "Location pin"],
     arrow: [arrow, "Arrow"],
+    moon: [moon, "Moon"],
+    theme: [theme, "Dark-light"]
 }
 
 export const PICTURES = {

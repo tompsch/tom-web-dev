@@ -12,6 +12,9 @@ const formValidation = Yup.object().shape({
 })
 
 export default function Contact () {
+useEffect(()=>{
+    window.scrollTo(0,0);
+},[])
     const formik = useFormik({
         initialValues: {name:"",email:"",message:""},
         validationSchema: formValidation,

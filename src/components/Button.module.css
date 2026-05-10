@@ -1,8 +1,9 @@
 .mainButton {
     font-family: var(--headingFontNoCaps);
-    background: none;
-    color: var(--secondaryColor);
-    border: 1px solid var(--secondaryColor);
+    background: var(--buttonBg);
+    color: var(--buttonText);
+    border: 1px solid var(--buttonBorder);
+
     border-radius: 16px;
     font-size: 1.16rem;
     height: 56px;
@@ -16,8 +17,10 @@
 
 @media(hover:hover){
     .mainButton:hover {
-        background-color: var(--secondaryColor);
-        color: var(--bgPrimary);
+        background-color: var(--buttonBgHover);
+        color: var(--buttonTextHover);
         cursor: pointer;
+        border: 1px solid var(--buttonBorderHover);
+
     }
 }

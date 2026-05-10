@@ -35,15 +35,15 @@ useEffect(()=>{
                         <h3>Front-end web developer · Bilingual (EN/ES)</h3>
                         <div className={styles.location}>
                             <h3>Argentina</h3>
-                            <img src={ICONS.pin[0]} alt={ICONS.pin[1]}></img>
+                            <img className={"monoIcons"} src={ICONS.pin[0]} alt={ICONS.pin[1]}></img>
                         </div>
                     </div>
                     <div className={styles.personalLinks}>
-                        <img src={ICONS.home[0]} alt={ICONS.home[1]} />
+                        <img className={"monoIcons"} src={ICONS.home[0]} alt={ICONS.home[1]} />
                         <a href="https://tompsch.dev" target="_blank" rel="noopener noreferrer" ><h4>tompsch.dev</h4></a>
-                        <img src={SOCIALS[1].icon} alt={SOCIALS[1].alt} />
+                        <img className={"monoIcons"} src={SOCIALS[1].icon} alt={SOCIALS[1].alt} />
                         <a href={SOCIALS[1].url} target="_blank" rel="noopener noreferrer" ><h4>/tompsch</h4></a>
-                        <img src={SOCIALS[0].icon} alt={SOCIALS[1].alt} />
+                        <img className={"monoIcons"} src={SOCIALS[0].icon} alt={SOCIALS[1].alt} />
                         <a href={SOCIALS[0].url} target="_blank" rel="noopener noreferrer" ><h4>in/tompsch</h4></a>
                     </div>
                 </div>

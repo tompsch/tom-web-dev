@@ -57,8 +57,8 @@ export default function Projects () {
                     <Card project={project} key={project.title}/>
                 )}
             </article>
-            <img className={`${styles.arrow} + ${styles.arrowL}`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
-            <img className={`${styles.arrow} + ${styles.arrowR}`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
+            <img className={`${styles.arrow} ${styles.arrowL} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
+            <img className={`${styles.arrow} ${styles.arrowR} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
             <Link to="portfolio"><Button withText="full portfolio"/></Link>
         </section>
     )

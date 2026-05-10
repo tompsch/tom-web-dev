@@ -16,7 +16,7 @@ export default function Footer () {
                     {SOCIALS.map((icon)=>
                     (<li key={icon.alt}>
                         <a href={icon.url} target="_blank" rel="noopener noreferrer">
-                            <img className={styles.icon} src={icon.icon} alt={icon.alt}/>
+                            <img className={styles.icon + " " + "monoIcons"} src={icon.icon} alt={icon.alt}/>
                         </a>
                     </li>))}
                 </ul>
