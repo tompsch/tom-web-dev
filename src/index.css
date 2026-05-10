@@ -108,7 +108,7 @@
   --formDarkMode: #ffffff;
   --buttonBg: var(--secondaryColor-75);
   --buttonText: var(--mainColor);
-  --buttonBorder: var(var(--secondaryColor-75));
+  --buttonBorder: var(--secondaryColor-75);
 
   --buttonBgHover: var(--mainColor-75);
   --buttonTextHover: var(--secondaryColor);
