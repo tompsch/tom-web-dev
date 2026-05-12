@@ -5,11 +5,15 @@ import Tech from "../components/Tech";
 const roleStr = `< react web developer />`;
 
 export default function Hero () {
+    // const [fontsLoaded, setFontsLoaded] = useState(false);
     const [role, setRole] = useState("")
     const [typeEnding, setTypeEnding] = useState(false)
     const [blink, setBlink] = useState(true)
     const [restart, setRestart] = useState(false)
 
+    // useEffect(()=>{
+    //     document.fonts.load("1.25rem HeroFontThree").then(()=>setFontsLoaded(true))
+    // },[])
     const getNumberArray = () => {
         let array = []
         for (let i = 0; i < roleStr.length; i++) {
@@ -31,6 +35,7 @@ export default function Hero () {
     const callRole = async () => {
         let newString = role;
 
+        await document.fonts.load("1.25rem HeroFontThree");
         for (const [i,char] of Array.from(roleStr).entries()) {
             newString = newString + char;
             const delay = delayArray[i]
