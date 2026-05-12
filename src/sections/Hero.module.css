@@ -2,12 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 648px; */
   overflow: hidden;
   margin: 0 0 4rem;
 }
 .presentation {
-  /* margin: 152px 0 224px; */
   margin: 6.5rem 0 8rem;
   align-content: center;
   display: grid;
@@ -43,5 +41,10 @@
 @media(width<=834px) {
   .presentation {
     margin: 8rem 0 11rem;
+  }
+}
+@media( (width >= 750px) and (height >= 1000px)) {
+  .presentation {
+    margin: 12rem 0 18rem;
   }
 }
