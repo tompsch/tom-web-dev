@@ -89,6 +89,10 @@
     margin: 2rem 0 4rem;
     width: 86vw;
 }
+.techStack > div:first-of-type {
+    display:flex;
+    column-gap: 1rem;
+}
 .allStacks {
     display: flex;
     column-gap: 1rem;
@@ -161,6 +165,13 @@
         justify-content: center;
     }
     .techStack {
+        align-items: center;
+    }
+    .techStack > div:first-of-type {
+        display:flex;
+        flex-direction: column;
+        height: 3rem;
+        column-gap: 1rem;
         align-items: center;
     }
 }

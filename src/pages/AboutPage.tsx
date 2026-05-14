@@ -1,19 +1,11 @@
 import styles from "./AboutPage.module.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SOCIALS, ICONS, PICTURES } from "../constants";
 import { useNavigate } from "react-router";
 import Button from "../components/Button";
 
 type IconKey = keyof typeof ICONS;
-const displayIcons = (selectionString: IconKey []) => {
-    return (
-        <>
-            {selectionString.map((name: IconKey)=>
-                <img src={ICONS[name][0]} alt={ICONS[name][1]} key={name}/>
-            )}
-        </>
-    )
-}
+
 
 const techStacks: [string, IconKey[]][] =
     [
@@ -23,7 +15,18 @@ const techStacks: [string, IconKey[]][] =
     ["Tools & Others",["vscode","npm","git","github","vite","figma"]],
 ];
 
+
 export default function AboutPage () {
+    const displayIcons = (selectionString: IconKey []) => {
+    return (
+        <>
+            {selectionString.map((name: IconKey)=>
+                <img src={ICONS[name][0]} alt={ICONS[name][1]} key={name} onMouseEnter={()=>setHovered(name)} onMouseLeave={()=>setHovered("")}/>
+            )}
+        </>
+    )
+}
+    const [hovered, setHovered] = useState("");
     const navigate = useNavigate();
     useEffect(()=>{
         window.scrollTo(0,0);
@@ -65,11 +68,14 @@ export default function AboutPage () {
             </article>
             <Button withText="work with me" onClick={()=>navigate("/contact")}/>
             <article className={styles.techStack}>
-                <h2>TECH STACK</h2>
+                <div>
+                    <h2>TECH STACK</h2>
+                    {hovered && <p>{hovered}</p>}
+                </div>
                 <div className={styles.allStacks}>
                     {techStacks.map((tech)=> {
                         return (
-                        <div className={styles.stack} key={tech[0]}>
+                            <div className={styles.stack} key={tech[0]}>
                             <h3>{tech[0]}</h3>
                             <div className={styles.icons}>
                                 {displayIcons(tech[1])}
