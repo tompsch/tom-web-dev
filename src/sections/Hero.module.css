@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  margin: 0 0 4rem;
+  padding: 0 0 4rem;
 }
 .presentation {
   margin: 6.5rem 0 8rem;
@@ -43,7 +43,7 @@
     margin: 8rem 0 11rem;
   }
 }
-@media( (width >= 750px) and (height >= 1000px)) {
+@media( (width >= 750px) and (orientation: portrait)) {
   .presentation {
     margin: 12rem 0 18rem;
   }

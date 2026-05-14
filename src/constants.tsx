@@ -102,7 +102,7 @@ export const PROJECTS = [
     fullTitle: "Boutique salon landing page / ",
     description: "Static HTML and CSS demo webpage built with iframes and animations",
     alt: "Hair Day Boutique Salon's  website",
-    web:"https://hairdayboutique.netlify.app/",
+    web:"https://tompsch.github.io/hairday/",
     repository: "https://github.com/tompsch/hair-day"
 }
 ]

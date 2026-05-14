@@ -14,6 +14,7 @@ const displayIcons = (selectionString: IconKey []) => {
         </>
     )
 }
+
 const techStacks: [string, IconKey[]][] =
     [
     ["Languages",["javascript","typescript","python"]],
