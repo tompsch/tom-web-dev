@@ -43,8 +43,7 @@
     margin: 8rem 0 11rem;
   }
 }
-/* @media ((width >= 750px) and (orientation: portrait)) { */
-  @media( ((width >= 750px) and (orientation: portrait)) or (width>1536px)) {
+@media ((width >= 750px) and (orientation: portrait)) {
   .presentation {
     margin: 12rem 0 18rem;
   }
@@ -52,5 +51,10 @@
 @media( (width >= 1400px) and (orientation: portrait)) {
   .presentation {
     margin: 12rem 0 18rem;
+  }
+}
+@media( (min-width: 1536px)) {
+  .presentation {
+    margin: 10rem 0 14rem;
   }
 }

@@ -108,3 +108,8 @@
         margin: 10rem 0 12rem;
     }
 }
+@media( (min-width: 1536px)) {
+  .subContainer {
+        margin: 10rem 0 12rem;
+    }
+}
