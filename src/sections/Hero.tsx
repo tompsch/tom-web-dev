@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css"
 import Tech from "../components/Tech";
+import ThreeAnimation from "../components/ThreeAnimation";
 
 const roleStr = `< react web developer />`;
 
@@ -52,17 +53,25 @@ export default function Hero () {
         }
         return ()=>clearInterval(interval);
     })
-
     return (
         <main className={styles.heroContainer}>
             <div className={styles.presentation}>
-                <div className={styles.textWrapper}>
-                    <h2 className={styles.heroTwo}>I´m </h2>
-                    <h1 className={styles.heroOne}>Tom</h1>
-                </div>
+                <ThreeAnimation />
                 <h6 className={styles.heroSix + " " + (blink ? styles.blinkingCaret : "")}>{role}</h6>
+
             </div>
             <Tech />
         </main>
     )
 }
+
+        // <main className={styles.heroContainer}>
+        //     <div className={styles.presentation}>
+        //         <div className={styles.textWrapper}>
+        //             <h2 className={styles.heroTwo}>I´m </h2>
+        //             <h1 className={styles.heroOne}>Tom</h1>
+        //         </div>
+        //         <h6 className={styles.heroSix + " " + (blink ? styles.blinkingCaret : "")}>{role}</h6>
+        //     </div>
+        //     <Tech />
+        // </main>
