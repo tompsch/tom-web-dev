@@ -11,8 +11,8 @@ const techStacks: [string, IconKey[]][] =
     [
     ["Languages",["javascript","typescript","python"]],
     ["Frameworks & Libraries",["react","jest"]],
-    ["Markup & Styling",["html","css","bootstrap"]],
-    ["Tools & Others",["vscode","npm","git","github","vite","figma"]],
+    ["Markup & Styling",["html","css","bootstrap", "figma"]],
+    ["Tools & Others",["copilot", "npm", "vscode","git","vite","github"]],
 ];
 
 
@@ -21,7 +21,12 @@ export default function AboutPage () {
     return (
         <>
             {selectionString.map((name: IconKey)=>
-                <img src={ICONS[name][0]} alt={ICONS[name][1]} key={name} onMouseEnter={()=>setHovered(name)} onMouseLeave={()=>setHovered("")}/>
+                <img className={name === "github" || name === "copilot" ? "monoIcons" : ""}
+                        src={ICONS[name][0]}
+                        alt={ICONS[name][1]}
+                        key={name}
+                        onMouseEnter={()=>setHovered(ICONS[name][1])}
+                        onMouseLeave={()=>setHovered("")}/>
             )}
         </>
     )

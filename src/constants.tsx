@@ -31,6 +31,7 @@ import islander from "./assets/footer_pic.jpeg"
 import pin from "./assets/pin.svg"
 import arrow from "./assets/left-arrow.svg"
 import theme from "./assets/themeIcon.svg"
+import copilot from "./assets/tech_svg/copilot.svg"
 
 
 export const HERO_ICONS = [
@@ -57,7 +58,7 @@ export const ICONS = {
     github: [github,"GitHub"],
     vscode: [vscode,"VSCode"],
     figma: [figma,"Figma"],
-    npm: [npm,"Figma"],
+    npm: [npm,"NPM"],
     html: [html,"HTML"],
     css: [css,"CSS"],
     git: [git,"Git"],
@@ -68,7 +69,8 @@ export const ICONS = {
     gears: [gears,"Gears"],
     pin: [pin, "Location pin"],
     arrow: [arrow, "Arrow"],
-    theme: [theme, "Dark-light"]
+    theme: [theme, "Dark-light"],
+    copilot: [copilot, "GitHub Copilot"],
 }
 
 export const PICTURES = {

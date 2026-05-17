@@ -33,8 +33,6 @@ const handleResize = ()=>{
             <ul>
                 {smallScreen && HERO_ICONS.map((icon) => <li key={icon[0]} ><img src={icon[0]} alt={icon[1]}></img></li>)}
             </ul>
-            
         </div>
-
     )
 }

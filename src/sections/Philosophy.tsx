@@ -8,11 +8,11 @@ const elements = ["modern","responsive","performant","accesible","intuitive","mo
 export default function Philosophy () {
     const navigate = useNavigate();
     return (
-        <section className={styles.philosophyContainer}>
+        <section className={`${styles.philosophyContainer} philosophy`}>
             <Line />
             <h1 className="title">Philosoph<span>y</span></h1>
-            <article className={styles.subContainer}> {/*antes section*/}
-                <div className={styles.dynamicText}> {/*antes article*/}
+            <article className={styles.subContainer}>
+                <div className={styles.dynamicText}>
                     <div>
                         <p>Building</p>
                         <div className={styles.roller}>

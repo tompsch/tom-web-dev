@@ -92,6 +92,7 @@
 .techStack > div:first-of-type {
     display:flex;
     column-gap: 1rem;
+    align-items: center;
 }
 .allStacks {
     display: flex;

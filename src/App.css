@@ -13,21 +13,26 @@ h1.title::first-letter {
     color: var(--secondaryColor-75);
 }
 
+
 .line {
-    width: 100%;
     position: absolute;
     height: 1px;
-    stroke: var(--mainColor);
-
+    stroke: var(--mainColor-75);
+}
+.line.notInView {
+    opacity: 0;
+}
+.line.inView {
+    animation: lineAnimation30 2.5s forwards;
 }
 
 @media (width <= 890px) {
-    .line {
-        width: 55%;
+    .line.inView {
+        animation: lineAnimation55 2.5s forwards;
     }
 }
-footer .line {
-    width: 55%;
+.philosophy .line.inView, footer .line.inView {
+    animation: lineAnimation55 2.5s forwards;
 }
 a {
     text-decoration: none;
@@ -47,3 +52,20 @@ ul {
     scroll-snap-type: y proximity;
     overflow-y: scroll;
 } */
+
+@keyframes lineAnimation55 {
+    from {
+        width: 0;
+    }
+    to {
+        width: 55%;
+    }
+}
+@keyframes lineAnimation30 {
+    from {
+        width: 0;
+    }
+    to {
+        width: 30%;
+    }
+}
