@@ -54,7 +54,7 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
   const colorChange = useRef<THREE.Color>(new THREE.Color());
   const easeRef = useRef<number>(0.05);
 
-  const { camera, gl, size } = useThree();
+  const { camera, size } = useThree(); //antes tambien "gl"
 
   // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
@@ -217,7 +217,7 @@ const geometry = useMemo(() => {
 
       const mx = intersects[0].point.x;
       const my = intersects[0].point.y;
-      const mz = intersects[0].point.z;
+    //   const mz = intersects[0].point.z;
 
       for (let i = 0, l = pos.count; i < l; i++) {
         const initX = copy.getX(i);
