@@ -46,18 +46,20 @@ interface ParticleSystemProps {
 }
 
 function ParticleSystem({ font, texture }: ParticleSystemProps) {
-  const meshRef = useRef<THREE.Points>(null);
-  const geometryCopyRef = useRef<THREE.BufferGeometry | null>(null);
-  const planeRef = useRef<THREE.Mesh>(null);
-  const mouse = useRef<THREE.Vector2>(new THREE.Vector2(-200, 200));
-  const isDown = useRef<boolean>(false);
-  const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
-  const raycaster = useRef<THREE.Raycaster>(new THREE.Raycaster());
-  const colorChange = useRef<THREE.Color>(new THREE.Color());
-  const easeRef = useRef<number>(0.05);
+    const meshRef = useRef<THREE.Points>(null);
+    const geometryCopyRef = useRef<THREE.BufferGeometry | null>(null);
+    const planeRef = useRef<THREE.Mesh>(null);
+    const mouse = useRef<THREE.Vector2>(new THREE.Vector2(-200, 200));
+    const isDown = useRef<boolean>(false);
+    const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
+    const raycaster = useRef<THREE.Raycaster>(new THREE.Raycaster());
+    const colorChange = useRef<THREE.Color>(new THREE.Color());
+    const easeRef = useRef<number>(0.05);
 
-  const { camera, size, gl } = useThree(); //antes tambien "gl"
+    const { camera, size, gl } = useThree(); //antes tambien "gl"
 
+    const animateStateRef = useRef<'pressing_ltr' | 'waitingR' | 'waitingL' | 'hovering_rtl'>('pressing_ltr'); // guardado de interracción en movil
+    const stateStartRef = useRef<number>(performance.now());                                       // tiempos para animar en movil
   // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
     if (size.width < 390) return 8;
@@ -225,11 +227,63 @@ const geometry = useMemo(() => {
     const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
 
     if (isMobile) {             // esto es para simular una interacción en movil
-    const t = performance.now() * 0.001;
+        const now = performance.now();
+        const elapsed = (now - stateStartRef.current) * 0.001; // secs en estado determinado
+        const yOffset = textSize * 0.005; //calculo el offset de Y en función al textSize
+          switch (animateStateRef.current) {
+            case 'pressing_ltr': {
+                const progress = elapsed / 4; // 0 a 1 en 4 segundos
+                mouse.current.x = -1 + progress * 2; // de -1 a 1
+                mouse.current.y = yOffset;
+                isDown.current = true;
 
-    mouse.current.x = Math.sin(t * 0.5);    // recorre el texto de lado a lado
-    mouse.current.y = Math.sin(t * 0.3) * 0.2;  // leve variación vertical
-    isDown.current = Math.sin(t * 0.8) > 0.8;   // simula click cada cierto tiempo
+                if (elapsed > 4) {
+                    animateStateRef.current = 'waitingR';
+                    stateStartRef.current = now;
+                    // isDown.current = false;
+                }
+                break;
+            }
+
+            case 'waitingR': {
+                // mouse.current.x = -999; // fuera de la escena, no interactúa
+                // mouse.current.y = -999;
+                // isDown.current = false;
+
+                if (elapsed > 2) {
+                    animateStateRef.current = 'hovering_rtl';
+                    stateStartRef.current = now;
+                    isDown.current = false;
+                }
+                break;
+            }
+
+            case 'hovering_rtl': {
+                const progress = elapsed / 2.5; // 0 a 1 en 2.5 segundos
+                mouse.current.x = 1 - progress * 2; // de 1 a -1
+                mouse.current.y = yOffset;
+                isDown.current = false;
+
+                if (elapsed > 2.5) {
+                    animateStateRef.current = 'waitingL';
+                    stateStartRef.current = now;
+                }
+                break;
+            }
+            case 'waitingL': {
+                // mouse.current.x = -999; // fuera de la escena, no interactúa
+                // mouse.current.y = -999;
+                // isDown.current = false;
+
+                if (elapsed > 4) {
+                    animateStateRef.current = 'pressing_ltr';
+                    stateStartRef.current = now;
+                    // isDown.current = false;
+                }
+                break;
+            }
+
+    }
     }
 
     raycaster.current.setFromCamera(mouse.current, camera);
