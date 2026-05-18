@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  // esto de acá abajo es agregado por errores en safari
+  build:{
+    target: "safari14",
+  }
 })

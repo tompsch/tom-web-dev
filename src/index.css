@@ -81,7 +81,7 @@
 
   color-scheme: light dark;
 
-  background: var(--bgPrimary);
+  background-color: var(--bgPrimary);
 
   font-size: 24px;
   font-synthesis: none;

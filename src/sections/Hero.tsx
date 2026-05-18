@@ -4,7 +4,21 @@ import Tech from "../components/Tech";
 import ThreeAnimation from "../components/ThreeAnimation";
 
 const roleStr = `< react web developer />`;
-
+const canUseWebGL = (): boolean => {
+    // return false;
+    try {
+        const canvas = document.createElement("canvas");
+        return !!(
+            window.WebGLRenderingContext &&
+            (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+        );
+    } catch {
+        return false;
+    }
+}
+const isMobile = 'ontouchstart' in window;
+console.log(isMobile)
+const webGLSupport = canUseWebGL();
 export default function Hero () {
     const [role, setRole] = useState("")
     const [typeEnding, setTypeEnding] = useState(false)
@@ -54,9 +68,13 @@ export default function Hero () {
         return ()=>clearInterval(interval);
     })
     return (
-        <main className={styles.heroContainer}>
-            <div className={styles.presentation}>
-                <ThreeAnimation />
+        <main className={webGLSupport ? styles.webGLContainer : styles.heroContainer}>
+            <div className={webGLSupport ? styles.webGLpresentation : styles.presentation}>
+                {webGLSupport ? <ThreeAnimation /> :
+                <div className={styles.textWrapper}>
+                     <h2 className={styles.heroTwo}>I´m </h2>
+                     <h1 className={styles.heroOne}>Tom</h1>
+                 </div>}
                 <h6 className={styles.heroSix + " " + (blink ? styles.blinkingCaret : "")}>{role}</h6>
 
             </div>
@@ -64,14 +82,3 @@ export default function Hero () {
         </main>
     )
 }
-
-        // <main className={styles.heroContainer}>
-        //     <div className={styles.presentation}>
-        //         <div className={styles.textWrapper}>
-        //             <h2 className={styles.heroTwo}>I´m </h2>
-        //             <h1 className={styles.heroOne}>Tom</h1>
-        //         </div>
-        //         <h6 className={styles.heroSix + " " + (blink ? styles.blinkingCaret : "")}>{role}</h6>
-        //     </div>
-        //     <Tech />
-        // </main>

@@ -6,6 +6,8 @@ import { ShapeGeometry } from "three";
 import * as THREE from "three";
 import styles from "../sections/Hero.module.css"
 
+const isMobile = 'ontouchstart' in window; // linea que agrego para saber si es movil
+
 const vertexShader = `
   attribute float size;
   attribute vec3 customColor;
@@ -54,12 +56,12 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
   const colorChange = useRef<THREE.Color>(new THREE.Color());
   const easeRef = useRef<number>(0.05);
 
-  const { camera, size } = useThree(); //antes tambien "gl"
+  const { camera, size, gl } = useThree(); //antes tambien "gl"
 
   // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
-    if (size.width < 480) return 8;
-    if (size.width < 768) return 10;
+    if (size.width < 390) return 8;
+    if (size.width < 834) return 10;
     if (size.width < 1024) return 13;
     return 16;
   }),[size.width])
@@ -71,7 +73,7 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     particleSize: 1,
     particleColor: 0xffffff,
     textSize, // before --> textSize: 16
-    area: 230, // before 250
+    area: 250, // before 250
   };
 
 const geometry = useMemo(() => {
@@ -85,7 +87,6 @@ const geometry = useMemo(() => {
 
     for (const line of lines) {
         const shapes = font.generateShapes(line, data.textSize);
-        
         const lineGeo = new ShapeGeometry(shapes);
         lineGeo.computeBoundingBox();
         const lineWidth = lineGeo.boundingBox!.max.x - lineGeo.boundingBox!.min.x;
@@ -165,23 +166,40 @@ const geometry = useMemo(() => {
     Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
   useEffect(() => {
+
+    const rect = gl.domElement.getBoundingClientRect(); // agrego esto para filtrar las interacciones fuera del canvas
     const onMouseMove = (e: MouseEvent) => {
+        const isInsideCanvas =
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom;
+            if (!isInsideCanvas) return; //hasta acá
+
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
     };
 
     const onMouseDown = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        const isInsideCanvas =              //igual desde acá
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom;
 
-      const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
-      vector.unproject(camera);
-      const dir = vector.sub(camera.position).normalize();
-      const distance = -camera.position.z / dir.z;
-      currentPos.current = camera.position.clone().add(dir.multiplyScalar(distance));
+        if (!isInsideCanvas) return;        //hasta acá
 
-      isDown.current = true;
-      easeRef.current = 0.01;
+        mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+        const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
+        vector.unproject(camera);
+        const dir = vector.sub(camera.position).normalize();
+        const distance = -camera.position.z / dir.z;
+        currentPos.current = camera.position.clone().add(dir.multiplyScalar(distance));
+
+        isDown.current = true;
+        easeRef.current = 0.01;
     };
 
     const onMouseUp = () => {
@@ -205,6 +223,14 @@ const geometry = useMemo(() => {
 
     const time = ((0.001 * performance.now()) % 12) / 12;
     const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
+
+    if (isMobile) {             // esto es para simular una interacción en movil
+    const t = performance.now() * 0.001;
+
+    mouse.current.x = Math.sin(t * 0.5);    // recorre el texto de lado a lado
+    mouse.current.y = Math.sin(t * 0.3) * 0.2;  // leve variación vertical
+    isDown.current = Math.sin(t * 0.8) > 0.8;   // simula click cada cierto tiempo
+    }
 
     raycaster.current.setFromCamera(mouse.current, camera);
     const intersects = raycaster.current.intersectObject(planeRef.current);
@@ -330,7 +356,7 @@ export default function ThreeAnimation () {
     );
   }, []);
   return (
-    <div id={styles.three} style={{ width: "100vw", height: "80vh", background: "#0b0e14"}} >
+    <div id={styles.three} >
         <Canvas
             camera={{ fov: 65, position: [0, 0, 100], near: 1, far: 10000 }}
             gl={{ antialias: true }}
