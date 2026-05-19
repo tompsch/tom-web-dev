@@ -77,6 +77,7 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     textSize, // before --> textSize: 16
     area: 250, // before 250
   };
+  const areaRef = useRef<number>(data.area);
 
 const geometry = useMemo(() => {
     const thePoints: THREE.Vector3[] = [];
@@ -249,8 +250,11 @@ const geometry = useMemo(() => {
                 // mouse.current.x = -999; // fuera de la escena, no interactúa
                 // mouse.current.y = -999;
                 // isDown.current = false;
+                areaRef.current = 0;    //agregado para salir de zona de interacción
 
                 if (elapsed > 2) {
+                    areaRef.current = 250;    //agregado para entran en zona de interacción
+
                     animateStateRef.current = 'hovering_rtl';
                     stateStartRef.current = now;
                     isDown.current = false;
@@ -274,8 +278,11 @@ const geometry = useMemo(() => {
                 // mouse.current.x = -999; // fuera de la escena, no interactúa
                 // mouse.current.y = -999;
                 // isDown.current = false;
+                areaRef.current = 0;    //agregado para salir de zona de interacción
 
                 if (elapsed > 4) {
+                    areaRef.current = 250;    //agregado para entran en zona de interacción
+ 
                     animateStateRef.current = 'pressing_ltr';
                     stateStartRef.current = now;
                     // isDown.current = false;
@@ -319,14 +326,14 @@ const geometry = useMemo(() => {
         const dy = my - py;
         const mouseDistance = dist(mx, my, px, py);
         const d = dx * dx + dy * dy;
-        const f = -data.area / d;
+        const f = -areaRef.current / d;           // antes  const f = -data.area / d;
 
         if (isDown.current) {
           const t = Math.atan2(dy, dx);
           px -= f * Math.cos(t);
           py -= f * Math.sin(t);
 
-          colorChange.current.setHSL(0.5 + zigzagTime, 1.0, 0.5);
+          colorChange.current.setHSL(0.5, 1.0, 0.5);   //colorChange.current.setHSL(0.5 + zigzagTime, 1.0, 0.5);
           coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
           coulors.needsUpdate = true;
 
