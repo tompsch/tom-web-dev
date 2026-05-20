@@ -257,8 +257,8 @@ const geometry = useMemo(() => {
   useFrame(() => {
     if (!meshRef.current || !planeRef.current || !geometryCopyRef.current) return;
 
-    const time = ((0.001 * performance.now()) % 12) / 12;
-    const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
+    // const time = ((0.001 * performance.now()) % 12) / 12;
+    // const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
 
     if (isMobile) {             // esto es para simular una interacción en movil
       if (prefersReducedMotion) return;

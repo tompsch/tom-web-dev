@@ -78,17 +78,12 @@
   width: 100vw;
   height: 80vh;
   background: var(--bgPrimary);
-  /* background: none; */
 }
-#three * {
-  /* background: var(--bgPrimary); */
-  /* background: none; */
-}
+
 .webGLpresentation .heroSix {
   grid-row: 1 / 1;
   grid-column: 1 / 1;
   height: min-content;
-  /* outline: 1px solid red; */
   margin: 46vh 0 0;
   }
 .blinkingCaret {

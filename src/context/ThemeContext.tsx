@@ -6,14 +6,23 @@ type Theme = 'dark' | 'light';
 type ThemeContextType = {
   theme: Theme,
   setTheme: React.Dispatch<React.SetStateAction<Theme>>
+
 }
-const ThemeContext = createContext<ThemeContextType | undefined>({theme:"dark", setTheme: () => {}});
-
-// const browserLang = navigator.language === "es-ES" ? "spanish" : "english";
-
+const prefLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({children}:{children: React.ReactNode}) => {
-    const [theme,setTheme] = useState<Theme>("dark");
+    const [theme,setTheme] = useState<Theme>(prefLight ? "light" : "dark");
+
+    useEffect (()=>{
+        const themeQuery = window.matchMedia('(prefers-color-scheme: light)');
+        const handleThemeChange = (e: MediaQueryListEvent) => {
+            setTheme(e.matches ? "light" : "dark");
+        }
+        themeQuery.addEventListener("change",handleThemeChange);
+        return () => themeQuery.removeEventListener("change",handleThemeChange);
+    },[])
+
 
     useEffect(() => {
         if (theme === 'light') {
