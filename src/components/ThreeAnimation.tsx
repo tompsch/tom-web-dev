@@ -5,6 +5,8 @@ import { Font } from "three/examples/jsm/Addons.js";
 import { ShapeGeometry } from "three";
 import * as THREE from "three";
 import styles from "../sections/Hero.module.css"
+import { useTheme } from "../context/ThemeContext"
+
 
 const isMobile = 'ontouchstart' in window; // linea que agrego para saber si es movil
 
@@ -46,6 +48,18 @@ interface ParticleSystemProps {
 }
 
 function ParticleSystem({ font, texture }: ParticleSystemProps) {
+    const { theme } = useTheme();
+
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    useEffect(()=>{
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const handleChanges = (e: MediaQueryListEvent) => {
+        setPrefersReducedMotion(e.matches)
+      }
+      motionQuery.addEventListener("change",handleChanges)
+      return ()=>motionQuery.removeEventListener("change", handleChanges);
+    },[])
+
     const meshRef = useRef<THREE.Points>(null);
     const geometryCopyRef = useRef<THREE.BufferGeometry | null>(null);
     const planeRef = useRef<THREE.Mesh>(null);
@@ -68,6 +82,11 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     return 16;
   }),[size.width])
   // hasta acá lo nuevo
+  // acá abajo agrego el valor dinámico de area en función a textSize
+    const area = useMemo(() => {
+        return textSize * 15;   // para que me dé 250 de area con textSize max.
+    }, [textSize]);
+  // hasta acá lo nuevo
 
   const data: ParticleData = {
     text: "tom psch",
@@ -75,15 +94,22 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     particleSize: 1,
     particleColor: 0xffffff,
     textSize, // before --> textSize: 16
-    area: 250, // before 250
+    area, // before 250
   };
-  const areaRef = useRef<number>(data.area);
+  const areaRef = useRef<number>(area);
+
+  useEffect(() => {
+        // areaRef.current = area;
+        areaRef.current = prefersReducedMotion ? 0 : area;
+
+    }, [area, prefersReducedMotion]);
 
 const geometry = useMemo(() => {
     const thePoints: THREE.Vector3[] = [];
     const colors: number[] = [];
     const sizes: number[] = [];
     const color = new THREE.Color();
+    theme === "dark" ? color.setHSL(0.142, 0.84, 0.64) : color.setRGB(0.03,0.14,0.20);
 
     const lines = data.text.split('\n');
     let offsetY = 0;
@@ -130,7 +156,7 @@ const geometry = useMemo(() => {
     bufferGeo.setAttribute("size", new THREE.Float32BufferAttribute(sizes, 1));
 
     return bufferGeo;
-}, [font, textSize]);
+}, [font, textSize, theme]);
   useEffect(() => {
     geometryCopyRef.current = new THREE.BufferGeometry();
     geometryCopyRef.current.copy(geometry);
@@ -145,11 +171,11 @@ const geometry = useMemo(() => {
         },
         vertexShader,
         fragmentShader,
-        blending: THREE.AdditiveBlending,
+        blending: theme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending,
         depthTest: false,
         transparent: true,
       }),
-    [texture]
+    [texture, theme]
   );
 
   const visibleHeight = (depth: number): number => {
@@ -170,8 +196,8 @@ const geometry = useMemo(() => {
 
   useEffect(() => {
 
-    const rect = gl.domElement.getBoundingClientRect(); // agrego esto para filtrar las interacciones fuera del canvas
-    const onMouseMove = (e: MouseEvent) => {
+      const onMouseMove = (e: MouseEvent) => {
+        const rect = gl.domElement.getBoundingClientRect(); // agrego esto para filtrar las interacciones fuera del canvas
         const isInsideCanvas =
             e.clientX >= rect.left &&
             e.clientX <= rect.right &&
@@ -180,10 +206,15 @@ const geometry = useMemo(() => {
             if (!isInsideCanvas) return; //hasta acá
 
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    //   mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      // mouse.current.y = -(e.clientY / (rect.top + rect.bottom)) * 2 + 1;
+      mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
+    //   console.log(window.innerHeight)
+    //   console.log(rect.top + rect.bottom)
     };
 
     const onMouseDown = (e: MouseEvent) => {
+        const rect = gl.domElement.getBoundingClientRect(); // agrego esto para filtrar las interacciones fuera del canvas
         const isInsideCanvas =              //igual desde acá
             e.clientX >= rect.left &&
             e.clientX <= rect.right &&
@@ -193,7 +224,9 @@ const geometry = useMemo(() => {
         if (!isInsideCanvas) return;        //hasta acá
 
         mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        // mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        // mouse.current.y = -(e.clientY / (rect.top + rect.bottom)) * 2 + 1;
+        mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
 
         const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
         vector.unproject(camera);
@@ -228,7 +261,8 @@ const geometry = useMemo(() => {
     const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
 
     if (isMobile) {             // esto es para simular una interacción en movil
-        const now = performance.now();
+      if (prefersReducedMotion) return;
+      const now = performance.now();
         const elapsed = (now - stateStartRef.current) * 0.001; // secs en estado determinado
         const yOffset = textSize * 0.005; //calculo el offset de Y en función al textSize
           switch (animateStateRef.current) {
@@ -253,7 +287,7 @@ const geometry = useMemo(() => {
                 areaRef.current = 0;    //agregado para salir de zona de interacción
 
                 if (elapsed > 2) {
-                    areaRef.current = 250;    //agregado para entran en zona de interacción
+                    areaRef.current = 20;    //hard-code area para que "rompa" el texto completo cuando sale
 
                     animateStateRef.current = 'hovering_rtl';
                     stateStartRef.current = now;
@@ -281,7 +315,7 @@ const geometry = useMemo(() => {
                 areaRef.current = 0;    //agregado para salir de zona de interacción
 
                 if (elapsed > 4) {
-                    areaRef.current = 250;    //agregado para entran en zona de interacción
+                    areaRef.current = area;    //agregado para entran en zona de interacción
  
                     animateStateRef.current = 'pressing_ltr';
                     stateStartRef.current = now;
@@ -315,7 +349,12 @@ const geometry = useMemo(() => {
         let py = pos.getY(i);
         let pz = pos.getZ(i);
 
-        colorChange.current.setHSL(0.5, 1, 1);
+         //antes setHSL(0.5, 1, 1)                          ORIGINAL
+         // colorChange.current.setHSL(0.142, 0.7, 0.75);   SEGUNDA BUENA OPCION
+        theme==="dark" ? colorChange.current.setHSL(0.142, 0.84, 0.64) : // COLOR POR ENCIMA UNA VEZ QUE ACTIVO MOUSE
+            colorChange.current.setRGB(0.03,0.14,0.20)
+            
+
         coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
         coulors.needsUpdate = true;
 
@@ -333,23 +372,32 @@ const geometry = useMemo(() => {
           px -= f * Math.cos(t);
           py -= f * Math.sin(t);
 
-          colorChange.current.setHSL(0.5, 1.0, 0.5);   //colorChange.current.setHSL(0.5 + zigzagTime, 1.0, 0.5);
+          //colorChange.current.setHSL(0.5 + zigzagTime, 1.0, 0.5); ORIGINAL
+          theme==="dark" ? colorChange.current.setHSL(0.142, 0.84, 0.64) :
+            colorChange.current.setRGB(0.03,0.14,0.20)
+
           coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
           coulors.needsUpdate = true;
 
           if (px > initX + 70 || px < initX - 70 || py > initY + 70 || py < initY - 70) {
-            colorChange.current.setHSL(0.15, 1.0, 0.5);
+
+            //colorChange.current.setHSL(0.15, 1.0, 0.5);    ORIGINAL
+            theme==="dark" ? colorChange.current.setHSL(0.578, 0.86, 0.96) :
+                colorChange.current.setRGB(0.9, 0.4, 0.1)
+
             coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
             coulors.needsUpdate = true;
           }
         } else {
-          if (mouseDistance < data.area) {
+          if (mouseDistance < areaRef.current) {
             if (i % 5 === 0) {
               const t = Math.atan2(dy, dx);
               px -= 0.03 * Math.cos(t);
               py -= 0.03 * Math.sin(t);
 
-              colorChange.current.setHSL(0.15, 1.0, 0.5);
+              theme==="dark" ? colorChange.current.setHSL(0.15, 1.0, 0.5) : // COLOR DEL FONDO
+                colorChange.current.setRGB(0.2, 0.5, 0.7)
+
               coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
               coulors.needsUpdate = true;
               size.array[i] = data.particleSize / 1.2;
@@ -366,7 +414,9 @@ const geometry = useMemo(() => {
             }
 
             if (px > initX + 10 || px < initX - 10 || py > initY + 10 || py < initY - 10) {
-              colorChange.current.setHSL(0.15, 1.0, 0.5);
+              theme==="dark" ? colorChange.current.setHSL(0.15, 1.0, 0.5) : // COLOR DEL CIRCULO
+                colorChange.current.setRGB(0.2, 0.5, 0.7)
+
               coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
               coulors.needsUpdate = true;
               size.array[i] = data.particleSize / 1.8;

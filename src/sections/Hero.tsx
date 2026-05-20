@@ -5,7 +5,6 @@ import ThreeAnimation from "../components/ThreeAnimation";
 
 const roleStr = `< react web developer />`;
 const canUseWebGL = (): boolean => {
-    // return false;
     try {
         const canvas = document.createElement("canvas");
         return !!(
@@ -16,8 +15,7 @@ const canUseWebGL = (): boolean => {
         return false;
     }
 }
-const isMobile = 'ontouchstart' in window;
-console.log(isMobile)
+
 const webGLSupport = canUseWebGL();
 export default function Hero () {
     const [role, setRole] = useState("")
