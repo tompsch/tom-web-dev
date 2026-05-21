@@ -65,7 +65,7 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     const planeRef = useRef<THREE.Mesh>(null);
     const mouse = useRef<THREE.Vector2>(new THREE.Vector2(-200, 200));
     const isDown = useRef<boolean>(false);
-    const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
+    // const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
     const raycaster = useRef<THREE.Raycaster>(new THREE.Raycaster());
     const colorChange = useRef<THREE.Color>(new THREE.Color());
     const easeRef = useRef<number>(0.05);
@@ -73,7 +73,9 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     const { camera, size, gl } = useThree(); //antes tambien "gl"
 
     const animateStateRef = useRef<'pressing_ltr' | 'waitingR' | 'waitingL' | 'hovering_rtl'>('pressing_ltr'); // guardado de interracción en movil
-    const stateStartRef = useRef<number>(performance.now());                                       // tiempos para animar en movil
+    // tiempos para animar en movil
+    // const stateStartRef = useRef<number>(performance.now());                                       
+    const elapsedRef = useRef(0);
   // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
     if (size.width < 390) return 8;
@@ -228,11 +230,11 @@ const geometry = useMemo(() => {
         // mouse.current.y = -(e.clientY / (rect.top + rect.bottom)) * 2 + 1;
         mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
 
-        const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
-        vector.unproject(camera);
-        const dir = vector.sub(camera.position).normalize();
-        const distance = -camera.position.z / dir.z;
-        currentPos.current = camera.position.clone().add(dir.multiplyScalar(distance));
+        // const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
+        // vector.unproject(camera);
+        // const dir = vector.sub(camera.position).normalize();
+        // const distance = -camera.position.z / dir.z;
+        // currentPos.current = camera.position.clone().add(dir.multiplyScalar(distance));
 
         isDown.current = true;
         easeRef.current = 0.01;
@@ -254,7 +256,22 @@ const geometry = useMemo(() => {
     };
   }, [camera]);
 
-  useFrame(() => {
+ useEffect(() => {
+  const handleScroll = () => {
+      if (!isMobile) return;
+      mouse.current.x = -200;
+      mouse.current.y = 200;
+      isDown.current = false;
+      areaRef.current = 0;
+      animateStateRef.current = 'waitingL';
+      elapsedRef.current = 3;
+    };
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+  useFrame((_,delta) => {
+    const safeDelta = Math.min(delta, 0.033);
     if (!meshRef.current || !planeRef.current || !geometryCopyRef.current) return;
 
     // const time = ((0.001 * performance.now()) % 12) / 12;
@@ -262,10 +279,13 @@ const geometry = useMemo(() => {
 
     if (isMobile) {             // esto es para simular una interacción en movil
       if (prefersReducedMotion) return;
-      const now = performance.now();
-        const elapsed = (now - stateStartRef.current) * 0.001; // secs en estado determinado
+      // const now = performance.now();
+        // const elapsed = (now - stateStartRef.current) * 0.001;
+        // secs en estado determinado
         const yOffset = textSize * 0.005; //calculo el offset de Y en función al textSize
-          switch (animateStateRef.current) {
+        elapsedRef.current += safeDelta;
+        const elapsed = elapsedRef.current;
+        switch (animateStateRef.current) {
             case 'pressing_ltr': {
                 const progress = elapsed / 4; // 0 a 1 en 4 segundos
                 mouse.current.x = -1 + progress * 2; // de -1 a 1
@@ -274,7 +294,8 @@ const geometry = useMemo(() => {
 
                 if (elapsed > 4) {
                     animateStateRef.current = 'waitingR';
-                    stateStartRef.current = now;
+                    // stateStartRef.current = now;
+                    elapsedRef.current = 0;
                     // isDown.current = false;
                 }
                 break;
@@ -290,7 +311,9 @@ const geometry = useMemo(() => {
                     areaRef.current = 20;    //hard-code area para que "rompa" el texto completo cuando sale
 
                     animateStateRef.current = 'hovering_rtl';
-                    stateStartRef.current = now;
+                    // stateStartRef.current = now;
+                    elapsedRef.current = 0;
+
                     isDown.current = false;
                 }
                 break;
@@ -304,7 +327,9 @@ const geometry = useMemo(() => {
 
                 if (elapsed > 2.5) {
                     animateStateRef.current = 'waitingL';
-                    stateStartRef.current = now;
+                    // stateStartRef.current = now;
+                    elapsedRef.current = 0;
+
                 }
                 break;
             }
@@ -316,9 +341,11 @@ const geometry = useMemo(() => {
 
                 if (elapsed > 4) {
                     areaRef.current = area;    //agregado para entran en zona de interacción
- 
+
                     animateStateRef.current = 'pressing_ltr';
-                    stateStartRef.current = now;
+                    // stateStartRef.current = now;
+                    elapsedRef.current = 0;
+
                     // isDown.current = false;
                 }
                 break;
@@ -326,7 +353,6 @@ const geometry = useMemo(() => {
 
     }
     }
-
     raycaster.current.setFromCamera(mouse.current, camera);
     const intersects = raycaster.current.intersectObject(planeRef.current);
 
@@ -353,7 +379,6 @@ const geometry = useMemo(() => {
          // colorChange.current.setHSL(0.142, 0.7, 0.75);   SEGUNDA BUENA OPCION
         theme==="dark" ? colorChange.current.setHSL(0.142, 0.84, 0.64) : // COLOR POR ENCIMA UNA VEZ QUE ACTIVO MOUSE
             colorChange.current.setRGB(0.03,0.14,0.20)
-            
 
         coulors.setXYZ(i, colorChange.current.r, colorChange.current.g, colorChange.current.b);
         coulors.needsUpdate = true;
