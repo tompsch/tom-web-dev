@@ -274,46 +274,33 @@ const geometry = useMemo(() => {
     const safeDelta = Math.min(delta, 0.033);
     if (!meshRef.current || !planeRef.current || !geometryCopyRef.current) return;
 
-    // const time = ((0.001 * performance.now()) % 12) / 12;
-    // const zigzagTime = (1 + Math.sin(time * 2 * Math.PI)) / 6;
-
     if (isMobile) {             // esto es para simular una interacción en movil
       if (prefersReducedMotion) return;
-      // const now = performance.now();
-        // const elapsed = (now - stateStartRef.current) * 0.001;
-        // secs en estado determinado
+
         const yOffset = textSize * 0.005; //calculo el offset de Y en función al textSize
         elapsedRef.current += safeDelta;
         const elapsed = elapsedRef.current;
         switch (animateStateRef.current) {
             case 'pressing_ltr': {
-                const progress = elapsed / 4; // 0 a 1 en 4 segundos
+                const progress = elapsed / 1; // 0 a 1 en 2 segundos (antes 4)
                 mouse.current.x = -1 + progress * 2; // de -1 a 1
                 mouse.current.y = yOffset;
                 isDown.current = true;
 
-                if (elapsed > 4) {
+                if (elapsed > 1) {
                     animateStateRef.current = 'waitingR';
-                    // stateStartRef.current = now;
                     elapsedRef.current = 0;
-                    // isDown.current = false;
                 }
                 break;
             }
 
             case 'waitingR': {
-                // mouse.current.x = -999; // fuera de la escena, no interactúa
-                // mouse.current.y = -999;
-                // isDown.current = false;
                 areaRef.current = 0;    //agregado para salir de zona de interacción
 
-                if (elapsed > 2) {
+                if (elapsed > 4) {
                     areaRef.current = 20;    //hard-code area para que "rompa" el texto completo cuando sale
-
                     animateStateRef.current = 'hovering_rtl';
-                    // stateStartRef.current = now;
                     elapsedRef.current = 0;
-
                     isDown.current = false;
                 }
                 break;
@@ -327,30 +314,20 @@ const geometry = useMemo(() => {
 
                 if (elapsed > 2.5) {
                     animateStateRef.current = 'waitingL';
-                    // stateStartRef.current = now;
                     elapsedRef.current = 0;
-
                 }
                 break;
             }
             case 'waitingL': {
-                // mouse.current.x = -999; // fuera de la escena, no interactúa
-                // mouse.current.y = -999;
-                // isDown.current = false;
                 areaRef.current = 0;    //agregado para salir de zona de interacción
 
-                if (elapsed > 4) {
+                if (elapsed > 6) {
                     areaRef.current = area;    //agregado para entran en zona de interacción
-
                     animateStateRef.current = 'pressing_ltr';
-                    // stateStartRef.current = now;
                     elapsedRef.current = 0;
-
-                    // isDown.current = false;
                 }
                 break;
             }
-
     }
     }
     raycaster.current.setFromCamera(mouse.current, camera);
