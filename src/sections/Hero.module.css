@@ -34,6 +34,7 @@
   color: var(--mainColor);
   justify-self: center;
   padding: 0 1px;
+  z-index: 0;
 }
 .blinkingCaret {
   box-shadow: 0.5px 0 0 var(--mainColor-75);
@@ -78,6 +79,7 @@
   width: 100vw;
   height: 80vh;
   background: var(--bgPrimary);
+  animation: entry 500ms linear;
 }
 
 .webGLpresentation .heroSix {
@@ -97,4 +99,13 @@
     .webGLpresentation .heroSix {
       margin: 40vh 0 0;
     }
+}
+
+@keyframes entry {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

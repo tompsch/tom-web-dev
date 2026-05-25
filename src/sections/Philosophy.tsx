@@ -2,30 +2,32 @@ import styles from "./Philosophy.module.css"
 import Button from "../components/Button"
 import Line from "../components/Line"
 import { useNavigate } from "react-router";
-
-const elements = ["modern","responsive","performant","accesible","intuitive","modular","scalable","secure","reliable"];
+import { TEXT } from "../constants";
+import { useLang } from "../context/LangContext";
 
 export default function Philosophy () {
+    const { lang } = useLang();
+    const langIndex = lang === "en" ? 0 : 1;
     const navigate = useNavigate();
     return (
         <section className={`${styles.philosophyContainer} philosophy`}>
             <Line />
-            <h1 className="title">Philosoph<span>y</span></h1>
+            <h1 className="title">{TEXT.philosophy.title[lang === "en" ? 0 : 2]}<span>{TEXT.philosophy.title[lang === "en" ? 1 : 3]}</span></h1>
             <article className={styles.subContainer}>
                 <div className={styles.dynamicText}>
                     <div>
-                        <p>Building</p>
+                        <p>{TEXT.philosophy.building[langIndex]}</p>
                         <div className={styles.roller}>
-                            {elements.map(el => <p className={styles.rollerElement} key={el}>{el}</p>)}
+                            {(lang === "en" ? TEXT.philosophy.elements : TEXT.philosophy.elementsEs).map(el => <p className={styles.rollerElement} key={el}>{el}</p>)}
                         </div>
                     </div>
-                    <p>web experiences with </p>
+                    <p>{TEXT.philosophy.web[langIndex]}</p>
                     <div>
-                        <p>clean code and</p><span className={styles.italic}> thoughtful design.</span>
+                        <p>{TEXT.philosophy.code[langIndex]}</p><span className={styles.italic}>{TEXT.philosophy.design[lang === "en" ? 0 : 1]}</span>
                     </div>
 
                 </div>
-                <Button withText="work with me" onClick={()=>navigate("/contact")}/>
+                <Button withText={TEXT.philosophy.cta[langIndex]} onClick={()=>navigate("/contact")}/>
             </article>
         </section>
     )

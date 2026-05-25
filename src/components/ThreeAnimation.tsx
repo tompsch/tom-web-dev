@@ -1,12 +1,9 @@
 import { useEffect, useRef, useMemo, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { FontLoader } from "three/examples/jsm/Addons.js";
-import { Font } from "three/examples/jsm/Addons.js";
-import { ShapeGeometry } from "three";
-import * as THREE from "three";
+import { FontLoader, Font } from "three/examples/jsm/loaders/FontLoader.js"
+import { ShapeGeometry, Texture, Raycaster, Vector2, Points, BufferGeometry, Mesh, Color, Vector3, Shape, Float32BufferAttribute, ShaderMaterial, AdditiveBlending, NormalBlending, PerspectiveCamera, BufferAttribute, TextureLoader, SRGBColorSpace } from "three";
 import styles from "../sections/Hero.module.css"
 import { useTheme } from "../context/ThemeContext"
-
 
 const isMobile = 'ontouchstart' in window; // linea que agrego para saber si es movil
 
@@ -44,7 +41,7 @@ interface ParticleData {
 
 interface ParticleSystemProps {
   font: Font;
-  texture: THREE.Texture;
+  texture: Texture;
 }
 
 function ParticleSystem({ font, texture }: ParticleSystemProps) {
@@ -60,21 +57,21 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
       return ()=>motionQuery.removeEventListener("change", handleChanges);
     },[])
 
-    const meshRef = useRef<THREE.Points>(null);
-    const geometryCopyRef = useRef<THREE.BufferGeometry | null>(null);
-    const planeRef = useRef<THREE.Mesh>(null);
-    const mouse = useRef<THREE.Vector2>(new THREE.Vector2(-200, 200));
+    const meshRef = useRef<Points>(null);
+    const geometryCopyRef = useRef<BufferGeometry | null>(null);
+    const planeRef = useRef<Mesh>(null);
+    const mouse = useRef<Vector2>(new Vector2(-200, 200));
     const isDown = useRef<boolean>(false);
     // const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
-    const raycaster = useRef<THREE.Raycaster>(new THREE.Raycaster());
-    const colorChange = useRef<THREE.Color>(new THREE.Color());
+    const raycaster = useRef<Raycaster>(new Raycaster());
+    const colorChange = useRef<Color>(new Color());
     const easeRef = useRef<number>(0.05);
 
     const { camera, size, gl } = useThree(); //antes tambien "gl"
 
     const animateStateRef = useRef<'pressing_ltr' | 'waitingR' | 'waitingL' | 'hovering_rtl'>('pressing_ltr'); // guardado de interracción en movil
     // tiempos para animar en movil
-    // const stateStartRef = useRef<number>(performance.now());                                       
+    // const stateStartRef = useRef<number>(performance.now());
     const elapsedRef = useRef(0);
   // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
@@ -107,10 +104,10 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     }, [area, prefersReducedMotion]);
 
 const geometry = useMemo(() => {
-    const thePoints: THREE.Vector3[] = [];
+    const thePoints: Vector3[] = [];
     const colors: number[] = [];
     const sizes: number[] = [];
-    const color = new THREE.Color();
+    const color = new Color();
     theme === "dark" ? color.setHSL(0.142, 0.84, 0.64) : color.setRGB(0.03,0.14,0.20);
 
     const lines = data.text.split('\n');
@@ -123,12 +120,12 @@ const geometry = useMemo(() => {
         const lineWidth = lineGeo.boundingBox!.max.x - lineGeo.boundingBox!.min.x;
         const xOffset = -lineWidth / 2;
 
-        let holeShapes: THREE.Shape[] = [];
+        let holeShapes: Shape[] = [];
         for (let q = 0; q < shapes.length; q++) {
             const shape = shapes[q];
             if (shape.holes && shape.holes.length > 0) {
                 for (let j = 0; j < shape.holes.length; j++) {
-                    holeShapes.push(shape.holes[j] as THREE.Shape);
+                    holeShapes.push(shape.holes[j] as Shape);
                 }
             }
         }
@@ -140,7 +137,7 @@ const geometry = useMemo(() => {
             const points = shape.getSpacedPoints(amountPoints);
 
             points.forEach((element) => {
-                thePoints.push(new THREE.Vector3(element.x + xOffset, element.y - offsetY, 0));
+                thePoints.push(new Vector3(element.x + xOffset, element.y - offsetY, 0));
                 colors.push(color.r, color.g, color.b);
                 sizes.push(1);
             });
@@ -149,31 +146,31 @@ const geometry = useMemo(() => {
         offsetY += data.textSize * 1.2;
     }
 
-    const bufferGeo = new THREE.BufferGeometry().setFromPoints(thePoints);
+    const bufferGeo = new BufferGeometry().setFromPoints(thePoints);
     bufferGeo.computeBoundingBox();
     const centerY = -0.1 * (bufferGeo.boundingBox!.max.y + bufferGeo.boundingBox!.min.y);
     bufferGeo.translate(0, centerY, 0);
     // bufferGeo.center();
-    bufferGeo.setAttribute("customColor", new THREE.Float32BufferAttribute(colors, 3));
-    bufferGeo.setAttribute("size", new THREE.Float32BufferAttribute(sizes, 1));
+    bufferGeo.setAttribute("customColor", new Float32BufferAttribute(colors, 3));
+    bufferGeo.setAttribute("size", new Float32BufferAttribute(sizes, 1));
 
     return bufferGeo;
 }, [font, textSize, theme]);
   useEffect(() => {
-    geometryCopyRef.current = new THREE.BufferGeometry();
+    geometryCopyRef.current = new BufferGeometry();
     geometryCopyRef.current.copy(geometry);
   }, [geometry]);
 
   const material = useMemo(
     () =>
-      new THREE.ShaderMaterial({
+      new ShaderMaterial({
         uniforms: {
-          color: { value: new THREE.Color(0xffffff) },
+          color: { value: new Color(0xffffff) },
           pointTexture: { value: texture },
         },
         vertexShader,
         fragmentShader,
-        blending: theme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending,
+        blending: theme === "dark" ? AdditiveBlending : NormalBlending,
         depthTest: false,
         transparent: true,
       }),
@@ -182,7 +179,7 @@ const geometry = useMemo(() => {
 
   const visibleHeight = (depth: number): number => {
     let d = depth;
-    const cam = camera as THREE.PerspectiveCamera;
+    const cam = camera as PerspectiveCamera;
     const cameraOffset = cam.position.z;
     if (d < cameraOffset) d -= cameraOffset;
     else d += cameraOffset;
@@ -191,7 +188,7 @@ const geometry = useMemo(() => {
   };
 
   const visibleWidth = (depth: number): number =>
-    visibleHeight(depth) * (camera as THREE.PerspectiveCamera).aspect;
+    visibleHeight(depth) * (camera as PerspectiveCamera).aspect;
 
   const dist = (x1: number, y1: number, x2: number, y2: number): number =>
     Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
@@ -334,10 +331,10 @@ const geometry = useMemo(() => {
     const intersects = raycaster.current.intersectObject(planeRef.current);
 
     if (intersects.length > 0) {
-      const pos = meshRef.current.geometry.attributes.position as THREE.BufferAttribute;
-      const copy = geometryCopyRef.current.attributes.position as THREE.BufferAttribute;
-      const coulors = meshRef.current.geometry.attributes.customColor as THREE.BufferAttribute;
-      const size = meshRef.current.geometry.attributes.size as THREE.BufferAttribute;
+      const pos = meshRef.current.geometry.attributes.position as BufferAttribute;
+      const copy = geometryCopyRef.current.attributes.position as BufferAttribute;
+      const coulors = meshRef.current.geometry.attributes.customColor as BufferAttribute;
+      const size = meshRef.current.geometry.attributes.size as BufferAttribute;
 
       const mx = intersects[0].point.x;
       const my = intersects[0].point.y;
@@ -453,18 +450,18 @@ const geometry = useMemo(() => {
 
 export default function ThreeAnimation () {
   const [font, setFont] = useState<Font | null>(null);
-  const [texture, setTexture] = useState<THREE.Texture | null>(null);
+  const [texture, setTexture] = useState<Texture | null>(null);
 
   useEffect(() => {
     const fontLoader = new FontLoader();
     fontLoader.load(
-      "https://res.cloudinary.com/dydre7amr/raw/upload/v1612950355/font_zsd4dr.json",
+      "/font.json",
       (f) => setFont(f)
     );
 
-    const texLoader = new THREE.TextureLoader();
+    const texLoader = new TextureLoader();
     texLoader.load(
-      "https://res.cloudinary.com/dfvtkoboz/image/upload/v1605013866/particle_a64uzf.png",
+      "/particle.png",
       (t) => setTexture(t)
     );
   }, []);
@@ -474,7 +471,7 @@ export default function ThreeAnimation () {
             camera={{ fov: 65, position: [0, 0, 100], near: 1, far: 10000 }}
             gl={{ antialias: true }}
             onCreated={({ gl }) => {
-            gl.outputColorSpace = THREE.SRGBColorSpace;
+            gl.outputColorSpace = SRGBColorSpace;
             }}
         >
             {font && texture && <ParticleSystem font={font} texture={texture} />}

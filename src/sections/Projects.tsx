@@ -4,9 +4,12 @@ import Button from "../components/Button"
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import Line from "../components/Line"
-import { PROJECTS, ICONS } from "../constants";
+import { PROJECTS, ICONS, TEXT } from "../constants";
+import { useLang } from "../context/LangContext"
 
 export default function Projects () {
+    const { lang } = useLang();
+    const langIndex = lang === "en" ? 0 : 1;
     const navigate = useNavigate();
     const scrollerRef = useRef<HTMLElement>(null);
     const [size, setSize] = useState(window.innerWidth);
@@ -52,15 +55,15 @@ export default function Projects () {
     return (
         <section className={styles.projectsContainer} >
             <Line />
-            <h1 className="title">Project<span>s</span></h1>
+            <h1 className="title">{TEXT.projects.title[lang === "en" ? 0 : 2]}<span>{TEXT.projects.title[lang === "en" ? 1 : 3]}</span></h1>
             <article className={styles.cards} ref={scrollerRef}> {/*antes section*/}
-                {PROJECTS.map((project)=>
-                    <Card project={project} key={project.title}/>
+                {PROJECTS.map((project,i)=>
+                    i<3 && <Card project={project} key={project.title}/>
                 )}
             </article>
-            <img className={`${styles.arrow} ${styles.arrowL} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
-            <img className={`${styles.arrow} ${styles.arrowR} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
-            <Button withText="full portfolio" onClick={()=>navigate("/portfolio")}/>
+            <img width={60} height={60} className={`${styles.arrow} ${styles.arrowL} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(-1)}></img>
+            <img width={60} height={60} className={`${styles.arrow} ${styles.arrowR} monoIcons`} src={ICONS.arrow[0]} alt={ICONS.arrow[1]} onClick={()=>handleScroll(1)}></img>
+            <Button withText={TEXT.projects.cta[langIndex]} onClick={()=>navigate("/portfolio")}/>
         </section>
     )
 }

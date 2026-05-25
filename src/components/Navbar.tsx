@@ -1,23 +1,27 @@
 import { NavLink, useLocation, useNavigate } from "react-router"
 import styles from "./Navbar.module.css"
-import { ICONS } from "../constants"
+import { ICONS, TEXT } from "../constants"
 import { useTheme } from "../context/ThemeContext"
+import { useLang } from "../context/LangContext"
 
 interface NavbarProps {
     footer?: boolean,
 }
 
 export default function Navbar({footer}: NavbarProps) {
+    const { lang } = useLang();
+    const langIndex = lang === "en" ? 0 : 1;
+    const prefix = lang === "es" ? "/es" : "";
     const {theme, setTheme} = useTheme();
 
     const location = useLocation();
     const navigate = useNavigate();
-
+    const homePath = lang === "es" ? "/es" : "/";
     const handleHomeClick = () => {
-        if(location.pathname === "/") {
+        if(location.pathname === homePath) {
             window.scrollTo({top: 0, behavior:"smooth"});
         } else {
-            navigate("/");
+            navigate(homePath);
             window.scrollTo({top: 0, behavior:"instant"});
         }
     }
@@ -28,8 +32,10 @@ export default function Navbar({footer}: NavbarProps) {
         <nav className={!footer ? styles.navBar : styles.footerNavBar}>
             {!footer &&
             <div className={styles.noFooter}>
-                <NavLink to="/">/HOME</NavLink>
+                <NavLink to={homePath}>{TEXT.nav.home[langIndex]}</NavLink>
                 <img
+                    height={36}
+                    width={36}
                     tabIndex={0}
                     role="button"
                     onKeyDown={e => e.key === "Enter" && toggleTheme()}
@@ -42,10 +48,10 @@ export default function Navbar({footer}: NavbarProps) {
                     tabIndex={0}
                     role="button"
                     onKeyDown={e => e.key === "Enter" && handleHomeClick()}
-                    >/HOME</li>}
-                <li><NavLink to="/portfolio">WORK</NavLink></li>
-                <li><NavLink to="/about">ABOUT</NavLink></li>
-                <li><NavLink to="/contact">CONTACT</NavLink></li>
+                    >{TEXT.nav.home[langIndex]}</li>}
+                <li><NavLink to={`${prefix}/portfolio`}>{TEXT.nav.work[langIndex]}</NavLink></li>
+                <li><NavLink to={`${prefix}/about`}>{TEXT.nav.about[langIndex]}</NavLink></li>
+                <li><NavLink to={`${prefix}/contact`}>{TEXT.nav.contact[langIndex]}</NavLink></li>
             </ul>
         </nav>
     )

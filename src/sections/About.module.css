@@ -64,6 +64,7 @@
 }
 .bulletIcons img {
     width: 1.67rem;
+    height: auto;
 }
 .bulletIcons span {
     color: var(--mainColor);

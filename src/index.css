@@ -1,54 +1,60 @@
 @font-face {
   font-family: "BebasNeue";
-  src: url("fonts/bebas-neue-family/BebasNeue-Regular.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebasneue-regular-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebasneue-regular-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "BebasNeuePro";
-  src: url("fonts/bebas-neue-family/Bebas-Neue-Pro-Regular-BF66cf3d7814160.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-regular-bf66cf3d7814160-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-regular-bf66cf3d7814160-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "BebasNeueProBook";
   font-style: normal;
-  src: url("fonts/bebas-neue-family/Bebas-Neue-Pro-Book-BF66cf3d779e1f9.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-book-bf66cf3d779e1f9-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-book-bf66cf3d779e1f9-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "BebasNeueProBook";
   font-style: italic;
-  src: url("fonts/bebas-neue-family/Bebas-Neue-Pro-Book-Italic-BF66cf3d776c5ba.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-book-italic-bf66cf3d776c5ba-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-book-italic-bf66cf3d776c5ba-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "BebasNeueProExpBook";
   font-style: normal;
-  src: url("fonts/bebas-neue-family/Bebas-Neue-Pro-Expanded-Book-BF66cf3d77cb9c0.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-expanded-book-bf66cf3d77cb9c0-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-expanded-book-bf66cf3d77cb9c0-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "BebasNeueProExpBook";
   font-style: italic;
-  src: url("fonts/bebas-neue-family/Bebas-Neue-Pro-Expanded-Book-Italic-BF66cf3d79c13f5.ttf") format('truetype');
-  font-display: block;
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-expanded-book-italic-bf66cf3d79c13f5-webfont.woff2") format('woff2');
+  src: url("fonts/bebas-neue-family/bebas-neue-pro-expanded-book-italic-bf66cf3d79c13f5-webfont.woff") format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: "HeroFontOne";
   src: url("fonts/londrina_family/LondrinaOutline-Regular.woff2") format('woff2');
   src: url("fonts/londrina_family/LondrinaOutline-Regular.woff") format('woff');
-  font-display: block;
+  font-display: swap;
 }
 @font-face {
   font-family: "HeroFontTwo";
   src: url("fonts/londrina_family/LondrinaSketch-Regular.woff2") format('woff2');
   src: url("fonts/londrina_family/LondrinaSketch-Regular.woff") format('woff');
-  font-display: block;
+  font-display: swap;
 }
 @font-face {
   font-family: "HeroFontThree";
   src: url("fonts/londrina_family/LondrinaSolid-Regular.woff2") format('woff2');
   src: url("fonts/londrina_family/LondrinaSolid-Regular.woff") format('woff');
-  font-display: block;
+  font-display: swap;
 }
 
 :root {

@@ -29,6 +29,7 @@ footer p {
 }
 .footerPic {
     width: 78%;
+    height: auto;
     object-fit: cover;
     border-radius: 1rem;
     object-position: 0 56%;
@@ -45,7 +46,8 @@ footer p {
 }
 .socialIcons li {
     align-content: center;
-    width: 100%;
+    /* width: 100%;
+    height: auto; */
     display: flex;
     justify-content: center;
 }
@@ -53,6 +55,7 @@ footer p {
     display: block;
     justify-self: center;
     width: 100%;
+    height: 100%;
     opacity: 0.7;
     transition: 300ms;
 }
@@ -67,11 +70,31 @@ footer p {
     .footerPic {
         order: 3;
         width: 60%;
+        height: auto;
+        object-position: 40% 0;
     }
     footer p {
         align-self: flex-end;
         width: 60%;
-        margin-right: 2.78%;
+        /* margin-right: 2.78%; */
         text-align: center;
+
     }
+}
+
+.subFooter {
+    display: flex;
+}
+.subFooter p {
+    white-space: pre;
+    cursor: pointer;
+    width: fit-content;
+
+}
+.subFooter span {
+    width: fit-content;
+    white-space: pre;
+}
+.activeLang {
+    color: var(--mainColor);
 }

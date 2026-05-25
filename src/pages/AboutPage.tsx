@@ -1,27 +1,30 @@
 import styles from "./AboutPage.module.css"
 import { useEffect, useState } from "react";
-import { SOCIALS, ICONS, PICTURES } from "../constants";
+import { SOCIALS, ICONS, PICTURES, TEXT } from "../constants";
 import { useNavigate } from "react-router";
 import Button from "../components/Button";
+import { useLang } from "../context/LangContext";
 
 type IconKey = keyof typeof ICONS;
 
 
-const techStacks: [string, IconKey[]][] =
+const techStacks: [string, string, IconKey[]][] =
     [
-    ["Languages",["javascript","typescript","python"]],
-    ["Frameworks & Libraries",["react","jest"]],
-    ["Markup & Styling",["html","css","bootstrap", "figma"]],
-    ["Tools & Others",["copilot", "npm", "vscode","git","vite","github"]],
+    ["Languages","Lenguajes",["javascript","typescript","python"]],
+    ["Frameworks & Libraries","Frameworks y librerías",["react","jest"]],
+    ["Markup & Styling","Marcado y estilos", ["html","css","bootstrap", "figma"]],
+    ["Tools & Others","Otras herramientas", ["copilot", "npm", "vscode","git","vite","github"]],
 ];
 
 
 export default function AboutPage () {
+    const { lang } = useLang();
+    const langIndex = lang === "en" ? 0 : 1;
     const displayIcons = (selectionString: IconKey []) => {
     return (
         <>
             {selectionString.map((name: IconKey)=>
-                <img className={name === "github" || name === "copilot" ? "monoIcons" : ""}
+                <img width={56} height={56} className={name === "github" || name === "copilot" ? "monoIcons" : ""}
                         src={ICONS[name][0]}
                         alt={ICONS[name][1]}
                         key={name}
@@ -38,52 +41,52 @@ export default function AboutPage () {
     },[])
     return (
         <section className={styles.experienceContainer}>
-            <h1 className="title">About m<span>e</span></h1>
+            <h1 className="title">{TEXT.aboutPage.title[lang === "en" ? 0 : 2]}<span>{TEXT.aboutPage.title[lang === "en" ? 1 : 3]}</span></h1>
             <article className={styles.picAndData}>
-                <img src={PICTURES.bioPic[0]} alt={PICTURES.bioPic[1]}></img>
+                <img width={264} height={264} src={PICTURES.bioPic[0]} alt={PICTURES.bioPic[1]}></img>
                 <div className={styles.mainInfo}>
                     <div className={styles.mainHeaders}>
                         <h2>Tomás Puebla Schildknecht</h2>
-                        <h3>Front-end web developer · Bilingual (EN/ES)</h3>
+                        <h3>{TEXT.aboutPage.subtitle[lang === "en" ? 0 : 1]}</h3>
                         <div className={styles.location}>
                             <h3>Argentina</h3>
                             <img className={"monoIcons"} src={ICONS.pin[0]} alt={ICONS.pin[1]}></img>
                         </div>
                     </div>
                     <div className={styles.personalLinks}>
-                        <img className={"monoIcons"} src={ICONS.home[0]} alt={ICONS.home[1]} />
+                        <img width={24} height={24} className={"monoIcons"} src={ICONS.home[0]} alt={ICONS.home[1]} />
                         <a href="https://tompsch.dev" target="_blank" rel="noopener noreferrer" ><h4>tompsch.dev</h4></a>
-                        <img className={"monoIcons"} src={SOCIALS[1].icon} alt={SOCIALS[1].alt} />
+                        <img width={24} height={24} className={"monoIcons"} src={SOCIALS[1].icon} alt={SOCIALS[1].alt} />
                         <a href={SOCIALS[1].url} target="_blank" rel="noopener noreferrer" ><h4>/tompsch</h4></a>
-                        <img className={"monoIcons"} src={SOCIALS[0].icon} alt={SOCIALS[1].alt} />
+                        <img width={24} height={24} className={"monoIcons"} src={SOCIALS[0].icon} alt={SOCIALS[1].alt} />
                         <a href={SOCIALS[0].url} target="_blank" rel="noopener noreferrer" ><h4>in/tompsch</h4></a>
                     </div>
                 </div>
 
                 <div className={styles.aboutText}>
-                    <p>I'm a former computer and electronics engineering student and an avid, passionate technology enthusiast.</p>
-                    <p>Before transitioning into web development, I worked as a musician and music professor at schools and academies, which strengthened my communication and problem-solving skills, my patience and my passion for continuous learning.</p>
-                    <p>I specialize in building modern and responsive interfaces using
-                        <span> React, TypeScript, JavaScript, HTML, CSS, and Jest, </span>
-                        and I'm currently expanding my knowledge in back-end development with
-                        <span> Python and Django </span>
-                        to move toward full-stack engineering.
+                    <p>{TEXT.aboutPage.one[langIndex]}</p>
+                    <p>{TEXT.aboutPage.two[langIndex]}</p>
+                    <p>{TEXT.aboutPage.three[langIndex]}
+                        <span>{TEXT.aboutPage.four[langIndex]}</span>
+                        {TEXT.aboutPage.five[langIndex]}
+                        <span>{TEXT.aboutPage.six[langIndex]}</span>
+                        {TEXT.aboutPage.seven[langIndex]}
                     </p>
                 </div>
             </article>
-            <Button withText="work with me" onClick={()=>navigate("/contact")}/>
+            <Button withText={TEXT.aboutPage.cta[langIndex]} onClick={()=>navigate("/contact")}/>
             <article className={styles.techStack}>
                 <div>
-                    <h2>TECH STACK</h2>
+                    <h2>{TEXT.aboutPage.tech[langIndex]}</h2>
                     {hovered && <p>{hovered}</p>}
                 </div>
                 <div className={styles.allStacks}>
                     {techStacks.map((tech)=> {
                         return (
                             <div className={styles.stack} key={tech[0]}>
-                            <h3>{tech[0]}</h3>
+                            <h3>{tech[langIndex]}</h3>
                             <div className={styles.icons}>
-                                {displayIcons(tech[1])}
+                                {displayIcons(tech[2])}
                             </div>
                         </div>
                         )}

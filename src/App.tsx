@@ -9,17 +9,16 @@ import Footer from './sections/Footer'
 import { Routes, Route } from 'react-router'
 import { ThemeProvider } from './context/ThemeContext'
 
-
 function App() {
   return (
     <ThemeProvider>
       <Navbar />
       <Routes>
           <Route index element={<Home />}/>
-          <Route path="portfolio" element={<Portfolio/>} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="confirmation" element={<ContactSubmission />} />
+          <Route path={`portfolio`} element={<Portfolio/>} />
+          <Route path={`about`} element={<AboutPage />} />
+          <Route path={`contact`} element={<Contact />} />
+          <Route path={`confirmation`} element={<ContactSubmission />} />
       </Routes>
       <Footer />
     </ThemeProvider>

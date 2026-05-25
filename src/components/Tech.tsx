@@ -5,13 +5,13 @@ export default function Tech () {
     return (
         <div className={styles.container}>
             <ul>
-                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img src={icon[0]} alt={icon[1]}></img></li>)}
+                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img width={53} height={53} src={icon[0]} alt={icon[1]}></img></li>)}
             </ul>
             <ul className={styles.extraUl}>
-                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img src={icon[0]} alt={icon[1]}></img></li>)}
+                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img width={53} height={53} src={icon[0]} alt={icon[1]}></img></li>)}
             </ul>
             <ul className={styles.extraUl}>
-                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img src={icon[0]} alt={icon[1]}></img></li>)}
+                {HERO_ICONS.map((icon) => <li key={icon[0]} ><img width={53} height={53} src={icon[0]} alt={icon[1]}></img></li>)}
             </ul>
         </div>
     )

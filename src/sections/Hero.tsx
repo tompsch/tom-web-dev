@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import styles from "./Hero.module.css"
 import Tech from "../components/Tech";
-import ThreeAnimation from "../components/ThreeAnimation";
+import { TEXT } from "../constants"
+const ThreeAnimation = lazy(() => import('../components/ThreeAnimation'));
+import { useLang } from "../context/LangContext";
 
-const roleStr = `< react web developer />`;
 const canUseWebGL = (): boolean => {
     try {
         const canvas = document.createElement("canvas");
@@ -18,6 +19,8 @@ const canUseWebGL = (): boolean => {
 
 const webGLSupport = canUseWebGL();
 export default function Hero () {
+    const { lang } = useLang();
+    const langIndex = lang === "en" ? 0 : 1;
     const [role, setRole] = useState("")
     const [typeEnding, setTypeEnding] = useState(false)
     const [blink, setBlink] = useState(true)
@@ -25,7 +28,7 @@ export default function Hero () {
 
     const getNumberArray = () => {
         let array = []
-        for (let i = 0; i < roleStr.length; i++) {
+        for (let i = 0; i < TEXT.hero.role[langIndex].length; i++) {
             array.push(Math.floor(Math.random() * 175 + 75));
         }
         return array;
@@ -45,7 +48,7 @@ export default function Hero () {
         let newString = role;
 
         await document.fonts.load("1.25rem HeroFontThree");
-        for (const [i,char] of Array.from(roleStr).entries()) {
+        for (const [i,char] of Array.from(TEXT.hero.role[langIndex]).entries()) {
             newString = newString + char;
             const delay = delayArray[i]
             await new Promise((resolve) => setTimeout(()=>resolve(setRole(newString)),delay));
@@ -68,10 +71,16 @@ export default function Hero () {
     return (
         <main className={webGLSupport ? styles.webGLContainer : styles.heroContainer}>
             <div className={webGLSupport ? styles.webGLpresentation : styles.presentation}>
-                {webGLSupport ? <ThreeAnimation /> :
+                {webGLSupport ?
+                <Suspense fallback={
+                    <div id={styles.three} />
+                }>
+                    <ThreeAnimation />
+                </Suspense>
+                :
                 <div className={styles.textWrapper}>
-                     <h2 className={styles.heroTwo}>I´m </h2>
-                     <h1 className={styles.heroOne}>Tom</h1>
+                     <h2 className={styles.heroTwo}>{TEXT.hero.one[langIndex]}</h2>
+                     <h1 className={styles.heroOne}>{TEXT.hero.two[langIndex]}</h1>
                  </div>}
                 <h6 className={styles.heroSix + " " + (blink ? styles.blinkingCaret : "")}>{role}</h6>
 
