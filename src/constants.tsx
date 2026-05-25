@@ -113,24 +113,24 @@ export const PROJECTS = [
     fullTitle: "Boutique salon landing page / ",
     fullTitleEs: "Landing page de salón boutique / ",
     description: "Static HTML and CSS demo webpage built with iframes and animations",
-    descriptionEs: "Web demo estática creada con HTML y CSS, iframes y animaciones ",
+    descriptionEs: "Web demo estática creada con HTML y CSS, iframes y animaciones",
     alt: "Hair Day Boutique Salon's website",
     altEs: "Página web del salón boutique Hair Day",
     web:"https://tompsch.github.io/hairday/",
     repository: "https://github.com/tompsch/hair-day"
 },
-{title: "web dev portfolio",
-    titleEs: "portafolio de desarrollador web",
+{title: "web-dev portfolio",
+    titleEs: "portafolio web-dev",
     pic: webDev,
     widePic: webDevWide,
-    fullTitle: "Boutique salon landing page / ",
-    fullTitleEs: "Landing page de salón boutique / ",
-    description: "Static HTML and CSS demo webpage built with iframes and animations",
-    descriptionEs: "Web demo estática creada con HTML y CSS, iframes y animaciones ",
-    alt: "Hair Day Boutique Salon's website",
-    altEs: "Página web del salón boutique Hair Day",
-    web:"https://tompsch.github.io/hairday/",
-    repository: "https://github.com/tompsch/hair-day"
+    fullTitle: "Web developer portfolio / ",
+    fullTitleEs: "Portafolio de desarrollador web / ",
+    description: "React web application featuring 3D animations, language and theme context implementation, client-side form validation, and styling and animations built with plain CSS",
+    descriptionEs: "Aplicación web desarrollada con React que incorpora animaciones 3D, implementación de contexto para idioma y tema, validación de formularios del lado del cliente y estilos y animaciones realizados con CSS puro",
+    alt: "TOMPSCH's web-dev website",
+    altEs: "Página web del desarrollador web TOMPSCH",
+    web:"https://tompsch.dev",
+    repository: "https://github.com/tompsch/tom-web-dev"
 }
 ]
 
