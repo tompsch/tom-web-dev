@@ -4,7 +4,7 @@ import { ICONS } from "../constants"
 import { useLang } from "../context/LangContext"
 
 interface PortFolioCardProps {
-    project: {title: string, titleEs: string, pic: string, fullTitle: string, fullTitleEs: string, description: string, descriptionEs: string, widePic: string, alt: string, altEs: string, web: string, repository: string}
+    project: {title: string, titleEs: string, pic: string, fullTitle: string, fullTitleEs: string, description: string, descriptionEs: string, widePic: string, alt: string, altEs: string, web: string, repository: string, technologies: string []}
 }
 
 export default function PortfolioCard ({project}:PortFolioCardProps) {
@@ -22,6 +22,8 @@ export default function PortfolioCard ({project}:PortFolioCardProps) {
         <article className={styles.portfolioCard} onClick={handleClick} onMouseLeave={()=>setNoPointerEvents(true)} >
             <div className={styles.cardContainer}>
                 <h2>{lang === "en" ? project.title : project.titleEs}</h2>
+                <h5>{project.technologies.map((tech,i)=>
+                tech + (i < project.technologies.length-1 ? " · " : ""))}</h5>
                 <div className={styles.imgContainer}>
                     <img width={1560} height={79} src={project.widePic} alt={lang === "en" ? project.alt : project.altEs}></img>
                 </div>
