@@ -182,7 +182,7 @@ export const TEXT = {
         reactTwo:[" — crafting responsive, clean, and performant UIs"," — creando UIs limpias, eficientes y responsivas"],
         python:["Expanding into full-stack","Creciendo hacia full-stack"],
         pythonTwo:[" with Python and Django"," con Python y Django"],
-        gears:["Building real-world side projects","Creado proyectos paralelos del mundo real"],
+        gears:["Building real-world side projects","Creando proyectos paralelos del mundo real"],
         gearsTwo:[" to sharpen both ends of the stack"," para profundizar en ambos extremos del stack"],
         creativity:["Former teacher and musician","Experiencia como docente y músico"],
         creativityTwo:[" — bringing clarity, creativity, and a love for connecting the dots to every project"," — trayendo a cada proyecto claridad, creatividad y un gusto por unir sus piezas"],
