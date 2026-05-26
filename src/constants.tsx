@@ -87,7 +87,7 @@ export const PROJECTS = [
     fullTitle: "Mediterranean restaurant website / ",
     fullTitleEs: "Restaurant mediterráneo / ",
     description: "React web application featuring API integration, client-side form validation with Formik and Yup, and real form submission handling",
-    descriptionEs: "Aplicación web desarrollada con React con integración de APIs, validación de formularios del lado del cliente utilizando Formik y Yup y manejo real de envío de formularios",
+    descriptionEs: "Aplicación web desarrollada con React con integración de APIs, formularios funcionales y validación del lado del cliente utilizando Formik y Yup",
     alt: "Little Lemon's website",
     altEs: "Wesite de Little Lemon",
     technologies: ["React", "API Integration", "Formik", "Yup validation"],

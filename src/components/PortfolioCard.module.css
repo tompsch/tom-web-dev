@@ -32,10 +32,8 @@
     grid-row: 1 / span 1;
     grid-column: 2 / span 2;
     margin: auto 1rem auto auto;
-    /* min-width: calc(max-content / 2); */
     justify-self: flex-end;
     text-align: end;
-    /* transition: opacity 700ms; */
 }
 .imgContainer {
     grid-row: 2 / span 1;
@@ -92,8 +90,7 @@
     grid-column: 1 / span 1;
 }
 .portfolioCard:hover h5 {
-    /* opacity: 0; */
-    /* display: none; */
+    margin: 0.2rem 1rem;
 }
 .cardContainer a:hover {
     opacity: 1;
