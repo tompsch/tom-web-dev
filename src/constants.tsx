@@ -34,6 +34,8 @@ import theme from "./assets/themeIcon.svg"
 import copilot from "./assets/tech_svg/copilot.svg"
 import webDev from "./assets/webdev.webp"
 import webDevWide from "./assets/webdev2.webp"
+import themeSun from "./assets/themeSun2.svg"
+import themeMoon from "./assets/themeMoon 1.svg"
 
 export const HERO_ICONS = [
     [html,"HTML"],
@@ -70,8 +72,10 @@ export const ICONS = {
     gears: [gears,"Gears"],
     pin: [pin, "Location pin"],
     arrow: [arrow, "Arrow"],
-    theme: [theme, "Dark-light"],
     copilot: [copilot, "GitHub Copilot"],
+    theme: [theme, "Dark-light"],
+    themeSun: [themeSun, "Light Mode"],
+    themeMoon: [themeMoon, "Dark Mode"]
 }
 
 export const PICTURES = {

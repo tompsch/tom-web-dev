@@ -27,6 +27,7 @@
     grid-row: 1 / span 1;
     grid-column: 1 / span 1;
     padding: 0 1rem;
+    margin: auto 0;
 }
 .cardContainer h5 {
     grid-row: 1 / span 1;
@@ -66,7 +67,6 @@
     align-items: end;
     height: 100%;
     padding: 0 0.5rem;
-    background-color: var(--cardBg);
 }
 .links a {
     opacity: 0.7;
@@ -128,6 +128,7 @@
         justify-content: flex-start;
         padding: 0 1rem;
         gap: 1rem;
+        background-color: var(--cardBg);
     }
     .portfolioCard:hover .links a {
         margin: 0;

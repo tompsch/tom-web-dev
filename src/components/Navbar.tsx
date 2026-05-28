@@ -39,8 +39,10 @@ export default function Navbar({footer}: NavbarProps) {
                     tabIndex={0}
                     role="button"
                     onKeyDown={e => e.key === "Enter" && toggleTheme()}
-                    src={ICONS.theme[0]}
-                    alt={ICONS.theme[1]} className="monoIcons" onClick={toggleTheme}></img>
+                    src={theme === "light" ? ICONS.themeSun[0] : ICONS.themeMoon[0]}
+                    alt={theme === "light" ? ICONS.themeSun[1] : ICONS.themeMoon[1]}
+                    className="monoIcons"
+                    onClick={toggleTheme}></img>
             </div>}
             <ul className={styles.fullScreenNav}>
                 {footer && <li
