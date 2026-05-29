@@ -13,7 +13,6 @@ h1.title::first-letter {
     color: var(--secondaryColor-75);
 }
 
-
 .line {
     position: absolute;
     height: 1px;
@@ -39,19 +38,16 @@ a {
     color: var(--mainColor-75);
     transition: 300ms;
 }
-a:hover {
-    color: var(--mainColor);
-    cursor: pointer;
+@media (hover:hover)
+{
+    a:hover {
+        color: var(--mainColor);
+        cursor: pointer;
+    }
 }
 ul {
     list-style: none;
 }
-
-/* #root {
-    height: 100vh;
-    scroll-snap-type: y proximity;
-    overflow-y: scroll;
-} */
 
 @keyframes lineAnimation55 {
     from {

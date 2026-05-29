@@ -3,17 +3,18 @@ import styles from "./Navbar.module.css"
 import { ICONS, TEXT } from "../constants"
 import { useTheme } from "../context/ThemeContext"
 import { useLang } from "../context/LangContext"
+import { useRef, useState, useEffect } from "react"
 
 interface NavbarProps {
     footer?: boolean,
 }
 
 export default function Navbar({footer}: NavbarProps) {
+
     const { lang } = useLang();
     const langIndex = lang === "en" ? 0 : 1;
     const prefix = lang === "es" ? "/es" : "";
     const {theme, setTheme} = useTheme();
-
     const location = useLocation();
     const navigate = useNavigate();
     const homePath = lang === "es" ? "/es" : "/";
@@ -28,6 +29,31 @@ export default function Navbar({footer}: NavbarProps) {
     const toggleTheme = () => {
         theme==="dark" ? setTheme("light") : setTheme("dark")
     }
+    const prevTheme = useRef(theme);
+    const src = theme === "light" ? ICONS.themeSun[0] : ICONS.themeMoon[0];
+    const [themeSRC, setThemeSRC] = useState(src)
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [iconPhase, setIconPhase] = useState("")
+
+    useEffect(()=>{
+        if(prevTheme.current !== theme) {
+            setIconPhase(`${styles.exit}`)
+
+            timerRef.current && clearTimeout(timerRef.current);
+
+            timerRef.current = setTimeout(()=>{
+                const newSRC = theme === "light" ? ICONS.themeSun[0] : ICONS.themeMoon[0];
+                setThemeSRC(newSRC);
+                setIconPhase(`${styles.enter}`)
+                prevTheme.current = theme;
+            },150)
+            return ()=>{
+                timerRef.current && clearTimeout(timerRef.current);
+                setIconPhase("")
+            }
+        }
+    },[theme])
+
     return (
         <nav className={!footer ? styles.navBar : styles.footerNavBar}>
             {!footer &&
@@ -39,9 +65,9 @@ export default function Navbar({footer}: NavbarProps) {
                     tabIndex={0}
                     role="button"
                     onKeyDown={e => e.key === "Enter" && toggleTheme()}
-                    src={theme === "light" ? ICONS.themeSun[0] : ICONS.themeMoon[0]}
+                    src={themeSRC}
                     alt={theme === "light" ? ICONS.themeSun[1] : ICONS.themeMoon[1]}
-                    className="monoIcons"
+                    className={`${iconPhase} ${theme === "light" ? styles.darkIcon : styles.lightIcon}`}
                     onClick={toggleTheme}></img>
             </div>}
             <ul className={styles.fullScreenNav}>

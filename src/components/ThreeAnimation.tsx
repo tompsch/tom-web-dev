@@ -62,7 +62,6 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     const planeRef = useRef<Mesh>(null);
     const mouse = useRef<Vector2>(new Vector2(-200, 200));
     const isDown = useRef<boolean>(false);
-    // const currentPos = useRef<THREE.Vector3>(new THREE.Vector3());
     const raycaster = useRef<Raycaster>(new Raycaster());
     const colorChange = useRef<Color>(new Color());
     const easeRef = useRef<number>(0.05);
@@ -70,10 +69,7 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
     const { camera, size, gl } = useThree(); //antes tambien "gl"
 
     const animateStateRef = useRef<'pressing_ltr' | 'waitingR' | 'waitingL' | 'hovering_rtl'>('pressing_ltr'); // guardado de interracción en movil
-    // tiempos para animar en movil
-    // const stateStartRef = useRef<number>(performance.now());
     const elapsedRef = useRef(0);
-  // acá agrego el valor dinámico de size (1. lo agregué al useThree, 2. lo calculo con useMemo )
   const textSize = useMemo((()=>{
     if (size.width < 390) return 8;
     if (size.width < 834) return 10;
@@ -98,7 +94,6 @@ function ParticleSystem({ font, texture }: ParticleSystemProps) {
   const areaRef = useRef<number>(area);
 
   useEffect(() => {
-        // areaRef.current = area;
         areaRef.current = prefersReducedMotion ? 0 : area;
 
     }, [area, prefersReducedMotion]);
@@ -150,7 +145,6 @@ const geometry = useMemo(() => {
     bufferGeo.computeBoundingBox();
     const centerY = -0.1 * (bufferGeo.boundingBox!.max.y + bufferGeo.boundingBox!.min.y);
     bufferGeo.translate(0, centerY, 0);
-    // bufferGeo.center();
     bufferGeo.setAttribute("customColor", new Float32BufferAttribute(colors, 3));
     bufferGeo.setAttribute("size", new Float32BufferAttribute(sizes, 1));
 
@@ -205,11 +199,7 @@ const geometry = useMemo(() => {
             if (!isInsideCanvas) return; //hasta acá
 
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-    //   mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      // mouse.current.y = -(e.clientY / (rect.top + rect.bottom)) * 2 + 1;
       mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
-    //   console.log(window.innerHeight)
-    //   console.log(rect.top + rect.bottom)
     };
 
     const onMouseDown = (e: MouseEvent) => {
@@ -223,16 +213,7 @@ const geometry = useMemo(() => {
         if (!isInsideCanvas) return;        //hasta acá
 
         mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-        // mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        // mouse.current.y = -(e.clientY / (rect.top + rect.bottom)) * 2 + 1;
         mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
-
-        // const vector = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
-        // vector.unproject(camera);
-        // const dir = vector.sub(camera.position).normalize();
-        // const distance = -camera.position.z / dir.z;
-        // currentPos.current = camera.position.clone().add(dir.multiplyScalar(distance));
-
         isDown.current = true;
         easeRef.current = 0.01;
     };
@@ -338,7 +319,6 @@ const geometry = useMemo(() => {
 
       const mx = intersects[0].point.x;
       const my = intersects[0].point.y;
-    //   const mz = intersects[0].point.z;
 
       for (let i = 0, l = pos.count; i < l; i++) {
         const initX = copy.getX(i);
@@ -349,8 +329,6 @@ const geometry = useMemo(() => {
         let py = pos.getY(i);
         let pz = pos.getZ(i);
 
-         //antes setHSL(0.5, 1, 1)                          ORIGINAL
-         // colorChange.current.setHSL(0.142, 0.7, 0.75);   SEGUNDA BUENA OPCION
         theme==="dark" ? colorChange.current.setHSL(0.142, 0.84, 0.64) : // COLOR POR ENCIMA UNA VEZ QUE ACTIVO MOUSE
             colorChange.current.setRGB(0.03,0.14,0.20)
 
@@ -371,7 +349,6 @@ const geometry = useMemo(() => {
           px -= f * Math.cos(t);
           py -= f * Math.sin(t);
 
-          //colorChange.current.setHSL(0.5 + zigzagTime, 1.0, 0.5); ORIGINAL
           theme==="dark" ? colorChange.current.setHSL(0.142, 0.84, 0.64) :
             colorChange.current.setRGB(0.03,0.14,0.20)
 
@@ -380,7 +357,6 @@ const geometry = useMemo(() => {
 
           if (px > initX + 70 || px < initX - 70 || py > initY + 70 || py < initY - 70) {
 
-            //colorChange.current.setHSL(0.15, 1.0, 0.5);    ORIGINAL
             theme==="dark" ? colorChange.current.setHSL(0.578, 0.86, 0.96) :
                 colorChange.current.setRGB(0.9, 0.4, 0.1)
 
