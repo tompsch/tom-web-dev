@@ -11,10 +11,13 @@ type ThemeContextType = {
 const prefLight = window.matchMedia("(prefers-color-scheme: light)").matches;
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const savedTheme = localStorage.getItem("theme");
+const initialTheme = (savedTheme === "dark" || savedTheme === "light") ? savedTheme : (prefLight ? "light" : "dark");
 export const ThemeProvider = ({children}:{children: React.ReactNode}) => {
-    const [theme,setTheme] = useState<Theme>(prefLight ? "light" : "dark");
+    const [theme,setTheme] = useState<Theme>(initialTheme);
 
     useEffect (()=>{
+        if (savedTheme) return;
         const themeQuery = window.matchMedia('(prefers-color-scheme: light)');
         const handleThemeChange = (e: MediaQueryListEvent) => {
             setTheme(e.matches ? "light" : "dark");
@@ -25,11 +28,12 @@ export const ThemeProvider = ({children}:{children: React.ReactNode}) => {
 
 
     useEffect(() => {
-        if (theme === 'light') {
-            document.documentElement.classList.add('light')
-        } else {
-            document.documentElement.classList.remove('light')
-        }
+        document.documentElement.classList.toggle(
+            "light",
+            theme === "light"
+        );
+
+        localStorage.setItem("theme", theme);
     }, [theme])
 
     return (

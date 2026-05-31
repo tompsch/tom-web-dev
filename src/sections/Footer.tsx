@@ -7,11 +7,11 @@ import type React from "react"
 
 export default function Footer () {
     const { lang, setLang } = useLang();
-    // const prefix = lang === "es" ? "/es" : "";
     const handleLangClick = (e: React.MouseEvent<HTMLParagraphElement> | React.KeyboardEvent<HTMLParagraphElement>) => {
         const selection = e.currentTarget.innerText.toLowerCase();
         if((selection !==  "es" && selection !== "en") || selection === lang) return;
         setLang(selection);
+        localStorage.setItem("language", selection);
     }
     return (
         <footer>

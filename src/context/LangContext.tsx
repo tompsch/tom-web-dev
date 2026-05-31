@@ -8,12 +8,15 @@ type LangContextType = {
   setLang: React.Dispatch<React.SetStateAction<Lang>>
 
 }
-let userLanguage =
+const browserLanguage =
   navigator.languages?.[0] ||
   navigator.language ||
   "en";
+const savedLang = localStorage.getItem("language");
 
-let language: Lang = userLanguage.startsWith("es") ? "es" : "en";
+let language: Lang = (savedLang === "es" || savedLang === "en") ?
+savedLang :
+browserLanguage.startsWith("es") ? "es" : "en";
 
 const LangContext = createContext<LangContextType | undefined>(undefined);
 

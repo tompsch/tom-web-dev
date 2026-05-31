@@ -30,6 +30,7 @@
 @media (hover:hover) and (width >= 1062px){
     .card:hover {
         opacity: 1;
+        cursor: pointer;
     }
     .card h3::before {
         content: "";

@@ -85,7 +85,7 @@ export const PICTURES = {
 
 export const PROJECTS = [
     {title: "resto website",
-    titleEs: "web de restó",
+    titleEs: "restó web",
     pic: littlelemonPic,
     widePic: littlelemonWide,
     fullTitle: "Mediterranean restaurant website / ",
@@ -126,8 +126,8 @@ export const PROJECTS = [
     web:"https://tompsch.github.io/hairday/",
     repository: "https://github.com/tompsch/hair-day"
 },
-{title: "web-dev portfolio",
-    titleEs: "portafolio web-dev",
+{title: "web portfolio",
+    titleEs: "portafolio web",
     pic: webDev,
     widePic: webDevWide,
     fullTitle: "Web developer portfolio / ",
@@ -164,27 +164,28 @@ export const TEXT = {
     nav: {
         home: ["/HOME", "/INICIO"],
         work: ["WORK", "TRABAJO"],
-        about: ["ABOUT", "ACERCA"],
+        about: ["BIO", "BIO"],
         contact: ["CONTACT","CONTACTO"]
     },
     hero: {
-        one: ["I´m ", "Soy "],
+        one: ["I'm ", "Soy "],
         two: ["Tom", "Tom"],
         role: [`< react web developer />`, `< desarrollador web react />`],
     },
     philosophy: {
         title: ["Philosoph", "y", "Filosofí","a"],
-        building: ["Building", "Creando"],
+        building: ["Building", "Interfaces"],
         elements: ["modern","responsive","performant","accesible","intuitive","modular","scalable","secure","reliable"],
-        elementsEs: ["modernas","responsivas","eficientes","accesibles","intuitivas","modulares","escalables","seguras","confiables"],
-        web: ["web experiences with ", "experiencias web con "],
+        elementsEs: ["modernas","fluidas","eficientes","accesibles","intuitivas","modulares","robustas","seguras","fiables"],
+        web: ["web experiences with ", "para experiencias web con "],
         code: ["clean code and", "código limpio y"],
         design: [" thoughtful design.", " diseño cuidado."],
-        cta: ["work with me", "trabajemos juntos"]
+        cta: ["start a project", "inicia un proyecto"]
     },
     about: {
         title: ["About m", "e", "Sobre m","í"],
-        subtitle: ["front-end web developer with a strong background in music and education", "desarrollador front-end con sólida experiencia en música y educación"],
+        subtitle: ["front-end web developer with a strong background in music and education",
+            "desarrollador web front-end con trayectoria en música y educación"],
         cta: ["learn more", "ver más"],
         react:["Front-end development with React","Desarrollo front-end con React"],
         reactTwo:[" — crafting responsive, clean, and performant UIs"," — creando UIs limpias, eficientes y responsivas"],
@@ -197,37 +198,44 @@ export const TEXT = {
     },
     projects: {
         title: ["Project", "s", "Proyecto","s"],
-        cta: ["full portfolio", "portafolio completo"]
+        cta: ["portfolio", "portafolio"]
     },
     footer: {
         role: [".web developer",".desarrollador web"]
     },
     workPage: {
         title: ["Portfoli", "o", "Portafoli","o"],
-        cta: ["contact me", "contáctame"]
+        cta: ["start your project", "inicia tu proyecto"]
     },
     aboutPage: {
         title: ["About m", "e", "Sobre m","í"],
         subtitle: ["Front-end web developer · Bilingual (EN/ES)", "Desarrollador web front-end · Bilingüe (EN/ES)"],
         cta: ["work with me", "trabajemos juntos"],
-        one: ["I'm a former Computer and Electronics Engineering student and a passionate technology enthusiast with a deep curiosity for how things work.","Soy un ex-estudiante de Ingeniería Informática y Electrónica y un apasionado entusiasta de la tecnología con una profunda curiosidad por entender cómo funcionan las cosas."],
-        two: ["Before transitioning into web development, I worked as a musician and music professor at schools and academies, which strengthened my communication and problem-solving skills, my patience and my passion for continuous learning.","Antes de dedicarme al desarrollo web, trabajé como músico y profesor de música en escuelas y academias, experiencia que fortaleció mis habilidades de comunicación y resolución de problemas, así como mi paciencia y mi pasión por el aprendizaje continuo."],
-        three: ["I specialize in building modern and responsive interfaces using","Me especializo en la construcción de interfaces modernas y responsivas utilizando"],
-        four: [" React, TypeScript, JavaScript, HTML, CSS, and Jest, "," React, TypeScript, JavaScript, HTML, CSS y Jest "],
-        five: ["and I'm currently expanding my knowledge in back-end development with","y estoy actualmente ampliando mis conocimientos en desarrollo back-end con "],
-        six: [" Python and Django "," Python and Django "],
-        seven: ["to move toward full-stack engineering.","para avanzar hacia el desarrollo full-stack."],
+        one: ["With a background in Computer and Electronics Engineering, I've always been driven by a deep curiosity about how things work.",
+            "Estudié Ingeniería Informática y Electrónica y siempre me ha impulsado una profunda curiosidad por entender cómo funcionan las cosas."],
+        two: ["Before transitioning into web development, I worked as a musician and music teacher at schools and academies, which strengthened my communication and problem-solving skills, my patience and my passion for continuous learning.",
+            "Antes de dedicarme al desarrollo web, trabajé como músico y profesor de música en escuelas y academias, experiencia que fortaleció mis habilidades de comunicación y resolución de problemas, así como mi paciencia y pasión por el aprendizaje continuo."],
+        three: ["I specialize in building modern, responsive interfaces using",
+            "Me especializo en la construcción de interfaces modernas y responsivas utilizando"],
+        four: [" React, TypeScript, JavaScript, HTML, CSS, and Jest, ",
+            " React, TypeScript, JavaScript, HTML, CSS y Jest "],
+        five: ["and I'm currently expanding my knowledge in back-end development with",
+            "y actualmente estoy ampliando mis conocimientos en desarrollo back-end con "],
+        six: [" Python and Django ",
+            " Python y Django "],
+        seven: ["to move toward full-stack engineering.",
+            "para avanzar hacia la ingeniería full-stack."],
         tech: ["TECH STACK", "TECNOLOGÍAS"],
     },
     contactPage: {
-        title: ["Contact m", "e", "Contáctam","e"],
-        subtitle: ["Have a project or an idea?", "¿Tienes un proyecto o una idea?"],
-        doubleSubtitle: ["Get in touch! I am currently open for new opportunities!", "¡Hablemos! Estoy abierto a nuevas oportunidades"],
+        title: ["Contac", "t", "Contact","o"],
+        subtitle: ["Have a project in mind?", "¿Tienes un proyecto en mente?"],
+        doubleSubtitle: ["I'd love to hear about it.", "Me encantaría conocerlo."],
         name: ["Name", "Nombre"],
         email: ["Email Address", "Correo electrónico"],
         message: ["Message", "Mensaje"],
         subError: ["Oops! Form submission failed. Try again!", "¡Oops! El envío falló. ¡Intente de nuevo!"],
-        submit: ["Let's talk", "Conversemos"],
+        submit: ["Let's talk", "¡Hablemos!"],
         errors: {
             en:["Please enter a valid name","Maximum 30 characters", "Numbers are not allowed in this field", "Required", "Please enter a valid email", "Please enter at least 20 characters","1500 characters maximum. Need more space? Send me an email!"],
             es:["Por favor ingrese un nombre válido","Máximo 30 caracteres", "Números no admitidos en este campo", "Requerido", "Por favor ingrese un correo electrónico válido", "Por favor, al menos 20 caracteres","1500 caracteres máximo. ¿Necesitás más espacio? ¡Mándame un email!"]
