@@ -14,7 +14,7 @@ import py from "./assets/tech_svg/python.svg"
 import js from "./assets/tech_svg/javascript.svg"
 import react from "./assets/tech_svg/react.svg"
 import ts from "./assets/tech_svg/typescript.svg"
-import bootstrap from "./assets/tech_svg/bootstrap.svg"
+import bootstrap from "./assets/tech_svg/bootstrap4.svg"
 import jest from "./assets/tech_svg/jest.svg"
 import vite from "./assets/tech_svg/vite.svg"
 import github from "./assets/tech_svg/github.svg"
@@ -36,17 +36,18 @@ import webDev from "./assets/webdev.webp"
 import webDevWide from "./assets/webdev2.webp"
 import themeSun from "./assets/themeSun2.svg"
 import themeMoon from "./assets/themeMoon 1.svg"
+import django from "./assets/tech_svg/django.svg"
 
 export const HERO_ICONS = [
     [html,"HTML"],
-    [css,"CSS"],
+    [django,"Django"],
     [py,"Python"],
     [js,"JavaScript"],
     [react,"React"],
     [ts,"TypeScript"],
     [jest,"Jest"],
     [bootstrap,"Boostrap"],
-    [vite,"Vite"],
+    [css,"CSS"],
 ]
 
 export const ICONS = {
@@ -75,7 +76,8 @@ export const ICONS = {
     copilot: [copilot, "GitHub Copilot"],
     theme: [theme, "Dark-light"],
     themeSun: [themeSun, "Light Mode"],
-    themeMoon: [themeMoon, "Dark Mode"]
+    themeMoon: [themeMoon, "Dark Mode"],
+    django: [django, "Django"],
 }
 
 export const PICTURES = {
@@ -242,7 +244,7 @@ export const TEXT = {
         }
     },
     confirmationPage: {
-        title: ["Contact m", "e", "Contáctam","e"],
+        title: ["Contac", "t", "Contact","o"],
         subtitle: ["Thank you for your message!", "¡Gracias por tu mensaje!"],
         doubleSubtitle: ["I will get back to you shortly", "Me comunicaré en breve"],
         cta: ["back home", "volver al inicio"],

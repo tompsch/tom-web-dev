@@ -11,7 +11,7 @@ type IconKey = keyof typeof ICONS;
 const techStacks: [string, string, IconKey[]][] =
     [
     ["Languages","Lenguajes",["javascript","typescript","python"]],
-    ["Frameworks & Libraries","Frameworks y librerías",["react","jest"]],
+    ["Frameworks & Libraries","Frameworks y librerías",["react","jest", "django"]],
     ["Markup & Styling","Marcado y estilos", ["html","css","bootstrap", "figma"]],
     ["Tools & Others","Otras herramientas", ["copilot", "npm", "vscode","git","vite","github"]],
 ];

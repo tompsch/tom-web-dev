@@ -121,7 +121,8 @@
   --buttonBorderHover: var(--secondaryColor);
   --cardBg: #0b0e14;
 
-  --iconOpacity: 1;
+  --iconOpacity: 0.8;
+
 
 }
 :root.light .monoIcons {
