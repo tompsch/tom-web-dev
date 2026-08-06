@@ -1,75 +1,74 @@
-# React + TypeScript + Vite
+![Project Banner](src/assets/banner.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Tomás Puebla Schildknecht – Portfolio
 
-Currently, two official plugins are available:
+Welcome to the source code of my personal portfolio website.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 Live Web: https://tompsch.dev
 
-## React Compiler
+<br>
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## About
 
-Note: This will impact Vite dev & build performances.
+This portfolio showcases my projects, technical skills, and professional background as a Front-End Developer. It was designed and developed from scratch with a strong focus on performance, responsive design, accessibility, and user experience.
 
-## Expanding the ESLint configuration
+The website features smooth 3D animations, multilingual support, dark/light theme switching, and interactive UI elements while maintaining fast loading times and clean, maintainable code.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Responsive design for desktop, tablet, and mobile
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Interactive 3D scene built with Three.js
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Dark and light theme support
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- English and Spanish language support
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Client-side form validation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Smooth CSS animations and transitions
+
+- Performance and accessibility focused
+
+- Clean, component-based architecture
+
+## Built With
+
+### Front-End
+
+- React
+
+- TypeScript
+
+- Vite
+
+- HTML5
+
+- CSS3 (Vanilla CSS)
+
+### Libraries
+
+- Three.js
+
+- React Three Fiber
+
+- Formik
+
+- Yup
+
+- React Router
+
+- React Intersection Observer 
+
+<br>
+
+# Contact
+
+**Portfolio**: https://tompsch.dev/contact
+
+**LinkedIn**: https://www.linkedin.com/in/tompsch
+
+**Email**: hello@tompsch.dev
+
+Feel free to reach out if you'd like to collaborate or discuss web development, technology, or new opportunities.
+
