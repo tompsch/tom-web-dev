@@ -216,7 +216,7 @@ export const TEXT = {
     },
     projects: {
         title: ["Project", "s", "Proyecto","s"],
-        cta: ["portfolio", "portafolio"]
+        cta: ["see more work", "ver más trabajos"]
     },
     footer: {
         role: [".web developer",".desarrollador web"]
