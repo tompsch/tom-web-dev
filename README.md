@@ -5,8 +5,11 @@
 Welcome to the source code of my personal portfolio website.
 
 🔗 Live Web: https://tompsch.dev
-
 <br>
+<br>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ff3b234b-d56d-41de-9979-e42c32002730/deploy-status)](https://app.netlify.com/projects/tompsch/deploys)
+
+
 
 ## About
 
