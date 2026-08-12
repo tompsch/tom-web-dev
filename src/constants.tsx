@@ -95,7 +95,7 @@ export const PROJECTS = [
         fullTitle: "3D model preview and inspection / ",
         fullTitleEs: "Previsualización e inspección de modelos 3D / ",
         description: "React - TypeScript app built with React Three Fiber and Drei for 3D model interaction, featuring drag-and-drop, automatic camera positioning, environment controls, and a custom minimal UI",
-        descriptionEs: "Aplicación React - TypeScript construida con React Three Fiber y Drei para interacción con modelos 3D, con drag-and-drop, automatización de cámara, controles de entorno y una UI minimalista personalizada",
+        descriptionEs: "Aplicación React - TypeScript construida con React Three Fiber y Drei para interacción con modelos 3D, con drag-and-drop, automatización de cámara, controles de entorno y una UI minimalista",
         alt: "3d-model viewer website",
         altEs: "Website de visualizador de modelos 3D",
         technologies: ["React", "TypeScript", "R3F+Drei", "File API"],
